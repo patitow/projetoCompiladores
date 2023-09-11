@@ -9,3 +9,7 @@ Para rodar quaisquer dos comandos abaixos, é de extrema importancia que esteja 
 ## Para compilar a linguagem e suas classes, use: (os arquivos irão para a pasta bin)
 
 ```javac -cp antlr.jar -d bin ./main/*.java ./gen/*.java ```
+
+## Deveria rodar normalmente:
+
+```java -cp antlr.jar:bin MainBananaScript```

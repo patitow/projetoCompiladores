@@ -1,6 +1,3 @@
-package main;
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.*;
 import java.util.*;
 
 class MainBananaScript {
@@ -21,5 +18,9 @@ class MainBananaScript {
        int pos = vars.size()+1;
        vars.put(n,pos);
        return pos;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Running as intended");
     }
 }
