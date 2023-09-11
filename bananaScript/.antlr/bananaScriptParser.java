@@ -1,4 +1,4 @@
-// Generated from e:\Faculdade\Compiladores\projetoCompiladores\bananaScript\bananaScript.g4 by ANTLR 4.9.2
+// Generated from e:\Faculdade\Compiladores\projetoCompiladores\bananaScript\BananaScript.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class bananaScriptParser extends Parser {
+public class BananaScriptParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -75,7 +75,7 @@ public class bananaScriptParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "bananaScript.g4"; }
+	public String getGrammarFileName() { return "BananaScript.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -86,7 +86,7 @@ public class bananaScriptParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public bananaScriptParser(TokenStream input) {
+	public BananaScriptParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -95,7 +95,7 @@ public class bananaScriptParser extends Parser {
 		public ComContext com() {
 			return getRuleContext(ComContext.class,0);
 		}
-		public TerminalNode EOF() { return getToken(bananaScriptParser.EOF, 0); }
+		public TerminalNode EOF() { return getToken(BananaScriptParser.EOF, 0); }
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -149,15 +149,15 @@ public class bananaScriptParser extends Parser {
 		public ExpContext exp(int i) {
 			return getRuleContext(ExpContext.class,i);
 		}
-		public TerminalNode OP() { return getToken(bananaScriptParser.OP, 0); }
+		public TerminalNode OP() { return getToken(BananaScriptParser.OP, 0); }
 		public OpContext(ExpContext ctx) { copyFrom(ctx); }
 	}
 	public static class VarContext extends ExpContext {
-		public TerminalNode ID() { return getToken(bananaScriptParser.ID, 0); }
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
 		public VarContext(ExpContext ctx) { copyFrom(ctx); }
 	}
 	public static class ConstContext extends ExpContext {
-		public TerminalNode NUM() { return getToken(bananaScriptParser.NUM, 0); }
+		public TerminalNode NUM() { return getToken(BananaScriptParser.NUM, 0); }
 		public ConstContext(ExpContext ctx) { copyFrom(ctx); }
 	}
 
@@ -270,7 +270,7 @@ public class bananaScriptParser extends Parser {
 		public PrintContext(ComContext ctx) { copyFrom(ctx); }
 	}
 	public static class AtribContext extends ComContext {
-		public TerminalNode ID() { return getToken(bananaScriptParser.ID, 0); }
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
 		public ExpContext exp() {
 			return getRuleContext(ExpContext.class,0);
 		}

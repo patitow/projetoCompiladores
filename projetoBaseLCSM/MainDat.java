@@ -38,7 +38,8 @@ class MainDat {
                 ParseTree arg = t.getChild(c);
                 String type = arg.getChild(0).getText();
                 String name = arg.getChild(1).getText();                
-                print("        this.%s = %s;\n",name,name);
+                print("        this.%s = %s;\n",name,name);       
+                print("        this.%s = %s;\n",type,type);
             }
             println("     }\n");
             for (int c=firstArg;c<lastArg;c++) {

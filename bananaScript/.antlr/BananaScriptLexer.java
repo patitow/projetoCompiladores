@@ -1,4 +1,4 @@
-// Generated from e:\Faculdade\Compiladores\projetoCompiladores\bananaScript\bananaScript.g4 by ANTLR 4.9.2
+// Generated from e:\Faculdade\Compiladores\projetoCompiladores\bananaScript\BananaScript.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class bananaScriptLexer extends Lexer {
+public class BananaScriptLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -82,13 +82,13 @@ public class bananaScriptLexer extends Lexer {
 	}
 
 
-	public bananaScriptLexer(CharStream input) {
+	public BananaScriptLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "bananaScript.g4"; }
+	public String getGrammarFileName() { return "BananaScript.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

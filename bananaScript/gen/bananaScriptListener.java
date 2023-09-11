@@ -1,127 +1,127 @@
-// Generated from bananaScript.g4 by ANTLR 4.13.1
+// Generated from BananaScript.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
  * This interface defines a complete listener for a parse tree produced by
- * {@link bananaScriptParser}.
+ * {@link BananaScriptParser}.
  */
-public interface bananaScriptListener extends ParseTreeListener {
+public interface BananaScriptListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link bananaScriptParser#program}.
+	 * Enter a parse tree produced by {@link BananaScriptParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgram(bananaScriptParser.ProgramContext ctx);
+	void enterProgram(BananaScriptParser.ProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link bananaScriptParser#program}.
+	 * Exit a parse tree produced by {@link BananaScriptParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgram(bananaScriptParser.ProgramContext ctx);
+	void exitProgram(BananaScriptParser.ProgramContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Group}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void enterGroup(bananaScriptParser.GroupContext ctx);
+	void enterGroup(BananaScriptParser.GroupContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Group}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void exitGroup(bananaScriptParser.GroupContext ctx);
+	void exitGroup(BananaScriptParser.GroupContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Op}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void enterOp(bananaScriptParser.OpContext ctx);
+	void enterOp(BananaScriptParser.OpContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Op}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void exitOp(bananaScriptParser.OpContext ctx);
+	void exitOp(BananaScriptParser.OpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Var}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar(bananaScriptParser.VarContext ctx);
+	void enterVar(BananaScriptParser.VarContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Var}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar(bananaScriptParser.VarContext ctx);
+	void exitVar(BananaScriptParser.VarContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Const}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void enterConst(bananaScriptParser.ConstContext ctx);
+	void enterConst(BananaScriptParser.ConstContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Const}
-	 * labeled alternative in {@link bananaScriptParser#exp}.
+	 * labeled alternative in {@link BananaScriptParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void exitConst(bananaScriptParser.ConstContext ctx);
+	void exitConst(BananaScriptParser.ConstContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Atrib}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void enterAtrib(bananaScriptParser.AtribContext ctx);
+	void enterAtrib(BananaScriptParser.AtribContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Atrib}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void exitAtrib(bananaScriptParser.AtribContext ctx);
+	void exitAtrib(BananaScriptParser.AtribContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Print}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrint(bananaScriptParser.PrintContext ctx);
+	void enterPrint(BananaScriptParser.PrintContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Print}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrint(bananaScriptParser.PrintContext ctx);
+	void exitPrint(BananaScriptParser.PrintContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Seq}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void enterSeq(bananaScriptParser.SeqContext ctx);
+	void enterSeq(BananaScriptParser.SeqContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Seq}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void exitSeq(bananaScriptParser.SeqContext ctx);
+	void exitSeq(BananaScriptParser.SeqContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code If}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void enterIf(bananaScriptParser.IfContext ctx);
+	void enterIf(BananaScriptParser.IfContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code If}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void exitIf(bananaScriptParser.IfContext ctx);
+	void exitIf(BananaScriptParser.IfContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code While}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void enterWhile(bananaScriptParser.WhileContext ctx);
+	void enterWhile(BananaScriptParser.WhileContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code While}
-	 * labeled alternative in {@link bananaScriptParser#com}.
+	 * labeled alternative in {@link BananaScriptParser#com}.
 	 * @param ctx the parse tree
 	 */
-	void exitWhile(bananaScriptParser.WhileContext ctx);
+	void exitWhile(BananaScriptParser.WhileContext ctx);
 }

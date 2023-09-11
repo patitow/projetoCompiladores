@@ -1,4 +1,4 @@
-// Generated from bananaScript.g4 by ANTLR 4.13.1
+// Generated from BananaScript.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
-public class bananaScriptParser extends Parser {
+public class BananaScriptParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -75,7 +75,7 @@ public class bananaScriptParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "bananaScript.g4"; }
+	public String getGrammarFileName() { return "BananaScript.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -86,7 +86,7 @@ public class bananaScriptParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public bananaScriptParser(TokenStream input) {
+	public BananaScriptParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -96,18 +96,18 @@ public class bananaScriptParser extends Parser {
 		public ComContext com() {
 			return getRuleContext(ComContext.class,0);
 		}
-		public TerminalNode EOF() { return getToken(bananaScriptParser.EOF, 0); }
+		public TerminalNode EOF() { return getToken(BananaScriptParser.EOF, 0); }
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_program; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterProgram(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterProgram(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitProgram(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitProgram(this);
 		}
 	}
 
@@ -154,11 +154,11 @@ public class bananaScriptParser extends Parser {
 		public GroupContext(ExpContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterGroup(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterGroup(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitGroup(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitGroup(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -169,41 +169,41 @@ public class bananaScriptParser extends Parser {
 		public ExpContext exp(int i) {
 			return getRuleContext(ExpContext.class,i);
 		}
-		public TerminalNode OP() { return getToken(bananaScriptParser.OP, 0); }
+		public TerminalNode OP() { return getToken(BananaScriptParser.OP, 0); }
 		public OpContext(ExpContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterOp(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterOp(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitOp(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitOp(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class VarContext extends ExpContext {
-		public TerminalNode ID() { return getToken(bananaScriptParser.ID, 0); }
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
 		public VarContext(ExpContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterVar(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterVar(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitVar(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitVar(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ConstContext extends ExpContext {
-		public TerminalNode NUM() { return getToken(bananaScriptParser.NUM, 0); }
+		public TerminalNode NUM() { return getToken(BananaScriptParser.NUM, 0); }
 		public ConstContext(ExpContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterConst(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterConst(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitConst(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitConst(this);
 		}
 	}
 
@@ -318,27 +318,27 @@ public class bananaScriptParser extends Parser {
 		public PrintContext(ComContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterPrint(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterPrint(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitPrint(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitPrint(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AtribContext extends ComContext {
-		public TerminalNode ID() { return getToken(bananaScriptParser.ID, 0); }
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
 		public ExpContext exp() {
 			return getRuleContext(ExpContext.class,0);
 		}
 		public AtribContext(ComContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterAtrib(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterAtrib(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitAtrib(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitAtrib(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -352,11 +352,11 @@ public class bananaScriptParser extends Parser {
 		public WhileContext(ComContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterWhile(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterWhile(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitWhile(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitWhile(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -373,11 +373,11 @@ public class bananaScriptParser extends Parser {
 		public IfContext(ComContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterIf(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterIf(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitIf(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitIf(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -391,11 +391,11 @@ public class bananaScriptParser extends Parser {
 		public SeqContext(ComContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).enterSeq(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).enterSeq(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof bananaScriptListener ) ((bananaScriptListener)listener).exitSeq(this);
+			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitSeq(this);
 		}
 	}
 

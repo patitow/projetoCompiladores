@@ -2,7 +2,8 @@
 Projeto da disciplina de Compiladores - Universidade de Pernambuco - POLI
 
 ## Como rodar o projeto
-``` insira aqui a linha de comando ```
+Acesse a pasta bananaScript e leia agora o arquivo HOWTORUN.MD para maiores instruções.
+``` cd bananaScript ```
 
 Feito em grupo, com a participação de:  
  - [João Gabriel Gila](https://github.com/joaogabrieltg)  

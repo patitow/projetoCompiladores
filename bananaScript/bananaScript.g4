@@ -1,4 +1,4 @@
-grammar bananaScript;
+grammar BananaScript;
 
 program : com EOF ; 
 
