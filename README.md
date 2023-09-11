@@ -7,10 +7,10 @@ Acesse a pasta bananaScript e leia agora o arquivo HOWTORUN.MD para maiores inst
 
 Feito em grupo, com a participação de:  
  - [João Gabriel Gila](https://github.com/joaogabrieltg)  
- - [Hélio Augusto]()  
- - [Maria Cecilia]()  
+ - [Hélio Augusto](https://github.com/Helin-afm)  
+ - [Maria Cecilia](https://github.com/ceciliamedeiros)  
  - [Matheus Souza de Oliveira](https://github.com/patitow)  
- - [Pedro Lyra]()  
+ - [Pedro Lyra](https://github.com/PedrolyraC)  
 
 Baseado no [repositório](https://github.com/lcsm-ecomp/Compiladores2023.1) desenvolvido por:    
   [Luis Carlos de Souza Menezes](https://github.com/lcsm-ecomp), coordenador do curso de Engenharia da Computação da Universidade de Pernambuco, na Escola Politécnica de Pernambuco
