@@ -12,4 +12,4 @@ Feito em grupo, com a participação de:
  - [Pedro Lyra]()  
 
 Baseado no [repositório](https://github.com/lcsm-ecomp/Compiladores2023.1) desenvolvido por:    
-  [Luis Carlos Menezes](https://github.com/lcsm-ecomp), coordenador do curso de Engenharia da Computação da Universidade de Pernambuco, na Escola Politécnica de Pernambuco
+  [Luis Carlos de Souza Menezes](https://github.com/lcsm-ecomp), coordenador do curso de Engenharia da Computação da Universidade de Pernambuco, na Escola Politécnica de Pernambuco
