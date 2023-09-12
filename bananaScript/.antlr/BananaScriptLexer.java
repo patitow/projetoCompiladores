@@ -40,7 +40,9 @@ public class BananaScriptLexer extends Lexer {
 		return new String[] {
 			null, "'fun'", "'('", "')'", "':'", "','", "'int'", "'float'", "'string'", 
 			"'boolean'", "'='", "'if'", "'else'", "'while'", "'for'", "'try'", "'catch'", 
-			"'return'", null, null, null, null, "'*'", "'/'", "'+'", "'-'"
+			"'return'", null, null, null, null, "'*'", "'/'", "'+'", "'-'", "'and'",
+			"'or'", "'not'", "'in'", "'elsif'", "'switch'", "'case'", "'^'", "'%'", "']'",
+			"'['", "'bigger'", "'smaller'", "'equal'","'different'", "'is'", "'>'", "'<'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
