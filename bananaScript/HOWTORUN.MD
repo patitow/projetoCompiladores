@@ -12,4 +12,4 @@ Para rodar quaisquer dos comandos abaixos, é de extrema importancia que esteja 
 
 ## Deveria rodar normalmente:
 
-```java -cp antlr.jar:bin MainBananaScript.java```
+```java -cp antlr.jar MainBananaScript.java```

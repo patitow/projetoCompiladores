@@ -17,27 +17,36 @@ public class BananaScriptParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, ID=11, NUM=12, OP=13, ESPACOS=14;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
+		ID=18, INT=19, STRING=20, WS=21, MUL=22, DIV=23, ADD=24, SUB=25, COMMENT=26;
 	public static final int
-		RULE_program = 0, RULE_exp = 1, RULE_com = 2;
+		RULE_program = 0, RULE_function = 1, RULE_params = 2, RULE_param = 3, 
+		RULE_type = 4, RULE_block = 5, RULE_statement = 6, RULE_assignment = 7, 
+		RULE_ifStatement = 8, RULE_whileStatement = 9, RULE_forStatement = 10, 
+		RULE_tryCatchStatement = 11, RULE_returnStatement = 12, RULE_expression = 13, 
+		RULE_term = 14, RULE_functionCall = 15;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"program", "exp", "com"
+			"program", "function", "params", "param", "type", "block", "statement", 
+			"assignment", "ifStatement", "whileStatement", "forStatement", "tryCatchStatement", 
+			"returnStatement", "expression", "term", "functionCall"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'('", "')'", "'='", "';'", "'print'", "'{'", "'}'", "'if'", "'else'", 
-			"'while'"
+			null, "'fun'", "'('", "')'", "':'", "','", "'int'", "'float'", "'string'", 
+			"'boolean'", "'='", "'if'", "'else'", "'while'", "'for'", "'try'", "'catch'", 
+			"'return'", null, null, null, null, "'*'", "'/'", "'+'", "'-'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, null, "ID", 
-			"NUM", "OP", "ESPACOS"
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			null, null, null, null, null, null, "ID", "INT", "STRING", "WS", "MUL", 
+			"DIV", "ADD", "SUB", "COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -92,10 +101,12 @@ public class BananaScriptParser extends Parser {
 	}
 
 	public static class ProgramContext extends ParserRuleContext {
-		public ComContext com() {
-			return getRuleContext(ComContext.class,0);
+		public List<FunctionContext> function() {
+			return getRuleContexts(FunctionContext.class);
 		}
-		public TerminalNode EOF() { return getToken(BananaScriptParser.EOF, 0); }
+		public FunctionContext function(int i) {
+			return getRuleContext(FunctionContext.class,i);
+		}
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -105,13 +116,24 @@ public class BananaScriptParser extends Parser {
 	public final ProgramContext program() throws RecognitionException {
 		ProgramContext _localctx = new ProgramContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_program);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(6);
-			com();
-			setState(7);
-			match(EOF);
+			setState(33); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(32);
+				function();
+				}
+				}
+				setState(35); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==T__0 );
 			}
 		}
 		catch (RecognitionException re) {
@@ -125,284 +147,229 @@ public class BananaScriptParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpContext extends ParserRuleContext {
-		public ExpContext(ParserRuleContext parent, int invokingState) {
+	public static class FunctionContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
+		public ParamsContext params() {
+			return getRuleContext(ParamsContext.class,0);
+		}
+		public TypeContext type() {
+			return getRuleContext(TypeContext.class,0);
+		}
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public FunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_exp; }
-	 
-		public ExpContext() { }
-		public void copyFrom(ExpContext ctx) {
-			super.copyFrom(ctx);
-		}
+		@Override public int getRuleIndex() { return RULE_function; }
 	}
-	public static class GroupContext extends ExpContext {
-		public ExpContext exp() {
-			return getRuleContext(ExpContext.class,0);
+
+	public final FunctionContext function() throws RecognitionException {
+		FunctionContext _localctx = new FunctionContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_function);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(37);
+			match(T__0);
+			setState(38);
+			match(ID);
+			setState(39);
+			match(T__1);
+			setState(40);
+			params();
+			setState(41);
+			match(T__2);
+			setState(42);
+			match(T__3);
+			setState(43);
+			type();
+			setState(44);
+			block();
+			}
 		}
-		public GroupContext(ExpContext ctx) { copyFrom(ctx); }
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
 	}
-	public static class OpContext extends ExpContext {
-		public List<ExpContext> exp() {
-			return getRuleContexts(ExpContext.class);
+
+	public static class ParamsContext extends ParserRuleContext {
+		public List<ParamContext> param() {
+			return getRuleContexts(ParamContext.class);
 		}
-		public ExpContext exp(int i) {
-			return getRuleContext(ExpContext.class,i);
+		public ParamContext param(int i) {
+			return getRuleContext(ParamContext.class,i);
 		}
-		public TerminalNode OP() { return getToken(BananaScriptParser.OP, 0); }
-		public OpContext(ExpContext ctx) { copyFrom(ctx); }
+		public ParamsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_params; }
 	}
-	public static class VarContext extends ExpContext {
+
+	public final ParamsContext params() throws RecognitionException {
+		ParamsContext _localctx = new ParamsContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_params);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(54);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << ID))) != 0)) {
+				{
+				setState(46);
+				param();
+				setState(51);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==T__4) {
+					{
+					{
+					setState(47);
+					match(T__4);
+					setState(48);
+					param();
+					}
+					}
+					setState(53);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				}
+			}
+
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ParamContext extends ParserRuleContext {
+		public TypeContext type() {
+			return getRuleContext(TypeContext.class,0);
+		}
 		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
-		public VarContext(ExpContext ctx) { copyFrom(ctx); }
-	}
-	public static class ConstContext extends ExpContext {
-		public TerminalNode NUM() { return getToken(BananaScriptParser.NUM, 0); }
-		public ConstContext(ExpContext ctx) { copyFrom(ctx); }
-	}
-
-	public final ExpContext exp() throws RecognitionException {
-		return exp(0);
+		public ParamContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_param; }
 	}
 
-	private ExpContext exp(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		ExpContext _localctx = new ExpContext(_ctx, _parentState);
-		ExpContext _prevctx = _localctx;
-		int _startState = 2;
-		enterRecursionRule(_localctx, 2, RULE_exp, _p);
+	public final ParamContext param() throws RecognitionException {
+		ParamContext _localctx = new ParamContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_param);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(56);
+			type();
+			setState(57);
+			match(ID);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TypeContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
+		public TypeContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_type; }
+	}
+
+	public final TypeContext type() throws RecognitionException {
+		TypeContext _localctx = new TypeContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_type);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(59);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << ID))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class BlockContext extends ParserRuleContext {
+		public List<StatementContext> statement() {
+			return getRuleContexts(StatementContext.class);
+		}
+		public StatementContext statement(int i) {
+			return getRuleContext(StatementContext.class,i);
+		}
+		public BlockContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_block; }
+	}
+
+	public final BlockContext block() throws RecognitionException {
+		BlockContext _localctx = new BlockContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_block);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(16);
+			setState(62); 
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case NUM:
-				{
-				_localctx = new ConstContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-
-				setState(10);
-				match(NUM);
-				}
-				break;
-			case ID:
-				{
-				_localctx = new VarContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(11);
-				match(ID);
-				}
-				break;
-			case T__0:
-				{
-				_localctx = new GroupContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(12);
-				match(T__0);
-				setState(13);
-				exp(0);
-				setState(14);
-				match(T__1);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-			_ctx.stop = _input.LT(-1);
-			setState(23);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
+			_alt = 1;
+			do {
+				switch (_alt) {
+				case 1:
 					{
 					{
-					_localctx = new OpContext(new ExpContext(_parentctx, _parentState));
-					pushNewRecursionContext(_localctx, _startState, RULE_exp);
-					setState(18);
-					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(19);
-					match(OP);
-					setState(20);
-					exp(3);
+					setState(61);
+					statement();
 					}
-					} 
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
-				setState(25);
+				setState(64); 
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			unrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public static class ComContext extends ParserRuleContext {
-		public ComContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_com; }
-	 
-		public ComContext() { }
-		public void copyFrom(ComContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class PrintContext extends ComContext {
-		public ExpContext exp() {
-			return getRuleContext(ExpContext.class,0);
-		}
-		public PrintContext(ComContext ctx) { copyFrom(ctx); }
-	}
-	public static class AtribContext extends ComContext {
-		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
-		public ExpContext exp() {
-			return getRuleContext(ExpContext.class,0);
-		}
-		public AtribContext(ComContext ctx) { copyFrom(ctx); }
-	}
-	public static class WhileContext extends ComContext {
-		public ExpContext exp() {
-			return getRuleContext(ExpContext.class,0);
-		}
-		public ComContext com() {
-			return getRuleContext(ComContext.class,0);
-		}
-		public WhileContext(ComContext ctx) { copyFrom(ctx); }
-	}
-	public static class IfContext extends ComContext {
-		public ExpContext exp() {
-			return getRuleContext(ExpContext.class,0);
-		}
-		public List<ComContext> com() {
-			return getRuleContexts(ComContext.class);
-		}
-		public ComContext com(int i) {
-			return getRuleContext(ComContext.class,i);
-		}
-		public IfContext(ComContext ctx) { copyFrom(ctx); }
-	}
-	public static class SeqContext extends ComContext {
-		public List<ComContext> com() {
-			return getRuleContexts(ComContext.class);
-		}
-		public ComContext com(int i) {
-			return getRuleContext(ComContext.class,i);
-		}
-		public SeqContext(ComContext ctx) { copyFrom(ctx); }
-	}
-
-	public final ComContext com() throws RecognitionException {
-		ComContext _localctx = new ComContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_com);
-		int _la;
-		try {
-			setState(57);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case ID:
-				_localctx = new AtribContext(_localctx);
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(26);
-				match(ID);
-				setState(27);
-				match(T__2);
-				setState(28);
-				exp(0);
-				setState(29);
-				match(T__3);
-				}
-				break;
-			case T__4:
-				_localctx = new PrintContext(_localctx);
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(31);
-				match(T__4);
-				setState(32);
-				exp(0);
-				setState(33);
-				match(T__3);
-				}
-				break;
-			case T__5:
-				_localctx = new SeqContext(_localctx);
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(35);
-				match(T__5);
-				setState(39);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__5) | (1L << T__7) | (1L << T__9) | (1L << ID))) != 0)) {
-					{
-					{
-					setState(36);
-					com();
-					}
-					}
-					setState(41);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				setState(42);
-				match(T__6);
-				}
-				break;
-			case T__7:
-				_localctx = new IfContext(_localctx);
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(43);
-				match(T__7);
-				setState(44);
-				match(T__0);
-				setState(45);
-				exp(0);
-				setState(46);
-				match(T__1);
-				setState(47);
-				com();
-				setState(48);
-				match(T__8);
-				setState(49);
-				com();
-				}
-				break;
-			case T__9:
-				_localctx = new WhileContext(_localctx);
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(51);
-				match(T__9);
-				setState(52);
-				match(T__0);
-				setState(53);
-				exp(0);
-				setState(54);
-				match(T__1);
-				setState(55);
-				com();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
 		catch (RecognitionException re) {
@@ -416,39 +383,611 @@ public class BananaScriptParser extends Parser {
 		return _localctx;
 	}
 
-	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
-		switch (ruleIndex) {
-		case 1:
-			return exp_sempred((ExpContext)_localctx, predIndex);
+	public static class StatementContext extends ParserRuleContext {
+		public AssignmentContext assignment() {
+			return getRuleContext(AssignmentContext.class,0);
 		}
-		return true;
+		public IfStatementContext ifStatement() {
+			return getRuleContext(IfStatementContext.class,0);
+		}
+		public WhileStatementContext whileStatement() {
+			return getRuleContext(WhileStatementContext.class,0);
+		}
+		public ForStatementContext forStatement() {
+			return getRuleContext(ForStatementContext.class,0);
+		}
+		public TryCatchStatementContext tryCatchStatement() {
+			return getRuleContext(TryCatchStatementContext.class,0);
+		}
+		public ReturnStatementContext returnStatement() {
+			return getRuleContext(ReturnStatementContext.class,0);
+		}
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public StatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_statement; }
 	}
-	private boolean exp_sempred(ExpContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 0:
-			return precpred(_ctx, 2);
+
+	public final StatementContext statement() throws RecognitionException {
+		StatementContext _localctx = new StatementContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_statement);
+		try {
+			setState(73);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(66);
+				assignment();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(67);
+				ifStatement();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(68);
+				whileStatement();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(69);
+				forStatement();
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(70);
+				tryCatchStatement();
+				}
+				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(71);
+				returnStatement();
+				}
+				break;
+			case 7:
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(72);
+				expression();
+				}
+				break;
+			}
 		}
-		return true;
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class AssignmentContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public AssignmentContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_assignment; }
+	}
+
+	public final AssignmentContext assignment() throws RecognitionException {
+		AssignmentContext _localctx = new AssignmentContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_assignment);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(75);
+			match(ID);
+			setState(76);
+			match(T__9);
+			setState(77);
+			expression();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class IfStatementContext extends ParserRuleContext {
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public List<BlockContext> block() {
+			return getRuleContexts(BlockContext.class);
+		}
+		public BlockContext block(int i) {
+			return getRuleContext(BlockContext.class,i);
+		}
+		public IfStatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_ifStatement; }
+	}
+
+	public final IfStatementContext ifStatement() throws RecognitionException {
+		IfStatementContext _localctx = new IfStatementContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_ifStatement);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(79);
+			match(T__10);
+			setState(80);
+			expression();
+			setState(81);
+			match(T__3);
+			setState(82);
+			block();
+			setState(85);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+			case 1:
+				{
+				setState(83);
+				match(T__11);
+				setState(84);
+				block();
+				}
+				break;
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class WhileStatementContext extends ParserRuleContext {
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public WhileStatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_whileStatement; }
+	}
+
+	public final WhileStatementContext whileStatement() throws RecognitionException {
+		WhileStatementContext _localctx = new WhileStatementContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_whileStatement);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(87);
+			match(T__12);
+			setState(88);
+			expression();
+			setState(89);
+			match(T__3);
+			setState(90);
+			block();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ForStatementContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public ForStatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_forStatement; }
+	}
+
+	public final ForStatementContext forStatement() throws RecognitionException {
+		ForStatementContext _localctx = new ForStatementContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_forStatement);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(92);
+			match(T__13);
+			setState(93);
+			match(ID);
+			setState(94);
+			match(T__9);
+			setState(95);
+			expression();
+			setState(96);
+			match(T__3);
+			setState(97);
+			block();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TryCatchStatementContext extends ParserRuleContext {
+		public List<BlockContext> block() {
+			return getRuleContexts(BlockContext.class);
+		}
+		public BlockContext block(int i) {
+			return getRuleContext(BlockContext.class,i);
+		}
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
+		public TryCatchStatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_tryCatchStatement; }
+	}
+
+	public final TryCatchStatementContext tryCatchStatement() throws RecognitionException {
+		TryCatchStatementContext _localctx = new TryCatchStatementContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_tryCatchStatement);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(99);
+			match(T__14);
+			setState(100);
+			match(T__3);
+			setState(101);
+			block();
+			setState(102);
+			match(T__15);
+			setState(103);
+			match(T__1);
+			setState(104);
+			match(ID);
+			setState(105);
+			match(T__2);
+			setState(106);
+			match(T__3);
+			setState(107);
+			block();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ReturnStatementContext extends ParserRuleContext {
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public ReturnStatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_returnStatement; }
+	}
+
+	public final ReturnStatementContext returnStatement() throws RecognitionException {
+		ReturnStatementContext _localctx = new ReturnStatementContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_returnStatement);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(109);
+			match(T__16);
+			setState(110);
+			expression();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ExpressionContext extends ParserRuleContext {
+		public List<TermContext> term() {
+			return getRuleContexts(TermContext.class);
+		}
+		public TermContext term(int i) {
+			return getRuleContext(TermContext.class,i);
+		}
+		public List<TerminalNode> MUL() { return getTokens(BananaScriptParser.MUL); }
+		public TerminalNode MUL(int i) {
+			return getToken(BananaScriptParser.MUL, i);
+		}
+		public List<TerminalNode> DIV() { return getTokens(BananaScriptParser.DIV); }
+		public TerminalNode DIV(int i) {
+			return getToken(BananaScriptParser.DIV, i);
+		}
+		public ExpressionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expression; }
+	}
+
+	public final ExpressionContext expression() throws RecognitionException {
+		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
+		enterRule(_localctx, 26, RULE_expression);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(112);
+			term();
+			setState(117);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==MUL || _la==DIV) {
+				{
+				{
+				setState(113);
+				_la = _input.LA(1);
+				if ( !(_la==MUL || _la==DIV) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(114);
+				term();
+				}
+				}
+				setState(119);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TermContext extends ParserRuleContext {
+		public TerminalNode INT() { return getToken(BananaScriptParser.INT, 0); }
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
+		public TerminalNode STRING() { return getToken(BananaScriptParser.STRING, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public FunctionCallContext functionCall() {
+			return getRuleContext(FunctionCallContext.class,0);
+		}
+		public TermContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_term; }
+	}
+
+	public final TermContext term() throws RecognitionException {
+		TermContext _localctx = new TermContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_term);
+		try {
+			setState(128);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(120);
+				match(INT);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(121);
+				match(ID);
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(122);
+				match(STRING);
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(123);
+				match(T__1);
+				setState(124);
+				expression();
+				setState(125);
+				match(T__2);
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(127);
+				functionCall();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FunctionCallContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(BananaScriptParser.ID, 0); }
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public FunctionCallContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_functionCall; }
+	}
+
+	public final FunctionCallContext functionCall() throws RecognitionException {
+		FunctionCallContext _localctx = new FunctionCallContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_functionCall);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(130);
+			match(ID);
+			setState(131);
+			match(T__1);
+			setState(140);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << ID) | (1L << INT) | (1L << STRING))) != 0)) {
+				{
+				setState(132);
+				expression();
+				setState(137);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==T__4) {
+					{
+					{
+					setState(133);
+					match(T__4);
+					setState(134);
+					expression();
+					}
+					}
+					setState(139);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				}
+			}
+
+			setState(142);
+			match(T__2);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20>\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\23\n\3\3\3\3\3"+
-		"\3\3\7\3\30\n\3\f\3\16\3\33\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\7\4(\n\4\f\4\16\4+\13\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\5\4<\n\4\3\4\2\3\4\5\2\4\6\2\2\2B\2\b\3\2\2\2\4\22"+
-		"\3\2\2\2\6;\3\2\2\2\b\t\5\6\4\2\t\n\7\2\2\3\n\3\3\2\2\2\13\f\b\3\1\2\f"+
-		"\23\7\16\2\2\r\23\7\r\2\2\16\17\7\3\2\2\17\20\5\4\3\2\20\21\7\4\2\2\21"+
-		"\23\3\2\2\2\22\13\3\2\2\2\22\r\3\2\2\2\22\16\3\2\2\2\23\31\3\2\2\2\24"+
-		"\25\f\4\2\2\25\26\7\17\2\2\26\30\5\4\3\5\27\24\3\2\2\2\30\33\3\2\2\2\31"+
-		"\27\3\2\2\2\31\32\3\2\2\2\32\5\3\2\2\2\33\31\3\2\2\2\34\35\7\r\2\2\35"+
-		"\36\7\5\2\2\36\37\5\4\3\2\37 \7\6\2\2 <\3\2\2\2!\"\7\7\2\2\"#\5\4\3\2"+
-		"#$\7\6\2\2$<\3\2\2\2%)\7\b\2\2&(\5\6\4\2\'&\3\2\2\2(+\3\2\2\2)\'\3\2\2"+
-		"\2)*\3\2\2\2*,\3\2\2\2+)\3\2\2\2,<\7\t\2\2-.\7\n\2\2./\7\3\2\2/\60\5\4"+
-		"\3\2\60\61\7\4\2\2\61\62\5\6\4\2\62\63\7\13\2\2\63\64\5\6\4\2\64<\3\2"+
-		"\2\2\65\66\7\f\2\2\66\67\7\3\2\2\678\5\4\3\289\7\4\2\29:\5\6\4\2:<\3\2"+
-		"\2\2;\34\3\2\2\2;!\3\2\2\2;%\3\2\2\2;-\3\2\2\2;\65\3\2\2\2<\7\3\2\2\2"+
-		"\6\22\31);";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\34\u0093\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\6\2"+
+		"$\n\2\r\2\16\2%\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4\64"+
+		"\n\4\f\4\16\4\67\13\4\5\49\n\4\3\5\3\5\3\5\3\6\3\6\3\7\6\7A\n\7\r\7\16"+
+		"\7B\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\bL\n\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3"+
+		"\n\3\n\3\n\5\nX\n\n\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3"+
+		"\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\17\3\17\3"+
+		"\17\7\17v\n\17\f\17\16\17y\13\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3"+
+		"\20\5\20\u0083\n\20\3\21\3\21\3\21\3\21\3\21\7\21\u008a\n\21\f\21\16\21"+
+		"\u008d\13\21\5\21\u008f\n\21\3\21\3\21\3\21\2\2\22\2\4\6\b\n\f\16\20\22"+
+		"\24\26\30\32\34\36 \2\4\4\2\b\13\24\24\3\2\30\31\2\u0094\2#\3\2\2\2\4"+
+		"\'\3\2\2\2\68\3\2\2\2\b:\3\2\2\2\n=\3\2\2\2\f@\3\2\2\2\16K\3\2\2\2\20"+
+		"M\3\2\2\2\22Q\3\2\2\2\24Y\3\2\2\2\26^\3\2\2\2\30e\3\2\2\2\32o\3\2\2\2"+
+		"\34r\3\2\2\2\36\u0082\3\2\2\2 \u0084\3\2\2\2\"$\5\4\3\2#\"\3\2\2\2$%\3"+
+		"\2\2\2%#\3\2\2\2%&\3\2\2\2&\3\3\2\2\2\'(\7\3\2\2()\7\24\2\2)*\7\4\2\2"+
+		"*+\5\6\4\2+,\7\5\2\2,-\7\6\2\2-.\5\n\6\2./\5\f\7\2/\5\3\2\2\2\60\65\5"+
+		"\b\5\2\61\62\7\7\2\2\62\64\5\b\5\2\63\61\3\2\2\2\64\67\3\2\2\2\65\63\3"+
+		"\2\2\2\65\66\3\2\2\2\669\3\2\2\2\67\65\3\2\2\28\60\3\2\2\289\3\2\2\29"+
+		"\7\3\2\2\2:;\5\n\6\2;<\7\24\2\2<\t\3\2\2\2=>\t\2\2\2>\13\3\2\2\2?A\5\16"+
+		"\b\2@?\3\2\2\2AB\3\2\2\2B@\3\2\2\2BC\3\2\2\2C\r\3\2\2\2DL\5\20\t\2EL\5"+
+		"\22\n\2FL\5\24\13\2GL\5\26\f\2HL\5\30\r\2IL\5\32\16\2JL\5\34\17\2KD\3"+
+		"\2\2\2KE\3\2\2\2KF\3\2\2\2KG\3\2\2\2KH\3\2\2\2KI\3\2\2\2KJ\3\2\2\2L\17"+
+		"\3\2\2\2MN\7\24\2\2NO\7\f\2\2OP\5\34\17\2P\21\3\2\2\2QR\7\r\2\2RS\5\34"+
+		"\17\2ST\7\6\2\2TW\5\f\7\2UV\7\16\2\2VX\5\f\7\2WU\3\2\2\2WX\3\2\2\2X\23"+
+		"\3\2\2\2YZ\7\17\2\2Z[\5\34\17\2[\\\7\6\2\2\\]\5\f\7\2]\25\3\2\2\2^_\7"+
+		"\20\2\2_`\7\24\2\2`a\7\f\2\2ab\5\34\17\2bc\7\6\2\2cd\5\f\7\2d\27\3\2\2"+
+		"\2ef\7\21\2\2fg\7\6\2\2gh\5\f\7\2hi\7\22\2\2ij\7\4\2\2jk\7\24\2\2kl\7"+
+		"\5\2\2lm\7\6\2\2mn\5\f\7\2n\31\3\2\2\2op\7\23\2\2pq\5\34\17\2q\33\3\2"+
+		"\2\2rw\5\36\20\2st\t\3\2\2tv\5\36\20\2us\3\2\2\2vy\3\2\2\2wu\3\2\2\2w"+
+		"x\3\2\2\2x\35\3\2\2\2yw\3\2\2\2z\u0083\7\25\2\2{\u0083\7\24\2\2|\u0083"+
+		"\7\26\2\2}~\7\4\2\2~\177\5\34\17\2\177\u0080\7\5\2\2\u0080\u0083\3\2\2"+
+		"\2\u0081\u0083\5 \21\2\u0082z\3\2\2\2\u0082{\3\2\2\2\u0082|\3\2\2\2\u0082"+
+		"}\3\2\2\2\u0082\u0081\3\2\2\2\u0083\37\3\2\2\2\u0084\u0085\7\24\2\2\u0085"+
+		"\u008e\7\4\2\2\u0086\u008b\5\34\17\2\u0087\u0088\7\7\2\2\u0088\u008a\5"+
+		"\34\17\2\u0089\u0087\3\2\2\2\u008a\u008d\3\2\2\2\u008b\u0089\3\2\2\2\u008b"+
+		"\u008c\3\2\2\2\u008c\u008f\3\2\2\2\u008d\u008b\3\2\2\2\u008e\u0086\3\2"+
+		"\2\2\u008e\u008f\3\2\2\2\u008f\u0090\3\2\2\2\u0090\u0091\7\5\2\2\u0091"+
+		"!\3\2\2\2\f%\658BKWw\u0082\u008b\u008e";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
