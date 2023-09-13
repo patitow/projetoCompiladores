@@ -41,8 +41,10 @@ class MainIMP {
             return;
         }
         case "Print":
+        String n = t.getChild(1).getText();
+            int a = allocate(n);
             generateCode(t.getChild(1));
-            println("output\n");
+            println("output %d", a);
             return;
         case "Seq":
             for (int c=1;c<t.getChildCount()-1;c++)
