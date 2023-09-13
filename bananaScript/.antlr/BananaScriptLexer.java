@@ -1,4 +1,4 @@
-// Generated from e:\Faculdade\Compiladores\projetoCompiladores\bananaScript\BananaScript.g4 by ANTLR 4.9.2
+// Generated from /workspaces/projetoCompiladores/bananaScript/BananaScript.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -40,9 +40,7 @@ public class BananaScriptLexer extends Lexer {
 		return new String[] {
 			null, "'fun'", "'('", "')'", "':'", "','", "'int'", "'float'", "'string'", 
 			"'boolean'", "'='", "'if'", "'else'", "'while'", "'for'", "'try'", "'catch'", 
-			"'return'", null, null, null, null, "'*'", "'/'", "'+'", "'-'", "'and'",
-			"'or'", "'not'", "'in'", "'elsif'", "'switch'", "'case'", "'^'", "'%'", "']'",
-			"'['", "'bigger'", "'smaller'", "'equal'","'different'", "'is'", "'>'", "'<'"
+			"'return'", null, null, null, null, "'*'", "'/'", "'+'", "'-'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

@@ -1,6 +1,7 @@
 
 # Guia de instruções para o ANTLR do BananaScript
 Para rodar quaisquer dos comandos abaixos, é de extrema importancia que esteja no diretorio 'bananaScript'
+Além disso, esse repositório somente pode ser executado em ambiente linux. Ele foi testado e projetado para o Codespaces.
 
 ## Para gerar as classes a partir da gramática, use: (os arquivos irão para a pasta gen)
 
@@ -8,8 +9,8 @@ Para rodar quaisquer dos comandos abaixos, é de extrema importancia que esteja 
 
 ## Para compilar a linguagem e suas classes, use: (os arquivos irão para a pasta bin)
 
-```javac -cp antlr.jar -d bin ./*.java ./gen/*.java```
+```javac -cp antlr.jar:gen *.java gen/*.java -d bin```
 
-## Deveria rodar normalmente:
+## Para rodar a main:
 
-```java -cp antlr.jar MainBananaScript.java```
+```java -cp antlr.jar:bin MainBananaScript```
