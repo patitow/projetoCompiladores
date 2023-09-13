@@ -1,22 +1,23 @@
 grammar BananaScript;
 
 // Regras léxicas
-ID: [a-zA-Z]+;                                            // Identificadores (nomes de variáveis, funções, etc.)
-INT: [0-9]+;                                              // Números inteiros
-STRING: '"' ~["\r\n]* '"';                                // Strings delimitadas por aspas duplas
-WS: [ \t\r\n]+ -> skip;                                   // Espaço em branco (ignorado)
+ID: [a-zA-Z]+;         // Identificadores (nomes de variáveis, funções, etc.)
+INT: [0-9]+;           // Números inteiros
+STRING: '"' ~["\r\n]* '"'; // Strings delimitadas por aspas duplas
+WS: [ \t\r\n]+ -> skip; // Espaço em branco (ignorado)
+COMMENT: '//' ~[\r\n]* -> skip; // Comentários de linha
 
 // Regras de parser
-program: function+;                                       // Programa consiste em uma ou mais funções
+program: function+;     // Programa consiste em uma ou mais funções
 
-function: 'fun' ID '(' params ')' ':' type block;         // Definição de função
+function: 'fun' ID '(' params ')' type block; // Definição de função
 
-params: (param (',' param)*)?;                            // Lista de parâmetros de função
-param: type ID;                                           // Parâmetro da função
+params: (param (',' param)*)?; // Lista de parâmetros de função
+param: type ID;                // Parâmetro da função
 
-type: 'int' | 'float' | 'string' | 'boolean' | ID;        // Tipos de dados
+type: 'int' | 'float' | 'string' | 'boolean' | 'void' | ID; // Tipos de dados
 
-block: statement+;                                        // Bloco de código
+block: statement+; // Bloco de código
 
 statement: assignment
          | ifStatement
@@ -24,27 +25,27 @@ statement: assignment
          | forStatement
          | tryCatchStatement
          | returnStatement
-         | expression;                                    // Diferentes tipos de instruções
+         | expression; // Diferentes tipos de instruções
 
-assignment: ID '=' expression;                            // Atribuição de variável
+assignment: ID '=' expression; // Atribuição de variável
 
-ifStatement: 'if' expression ':' block ('else' block)?;   // Estrutura condicional if
+ifStatement: 'if' expression ':' block ('else' block)?; // Estrutura condicional if
 
-whileStatement: 'while' expression ':' block;             // Loop while
+whileStatement: 'while' expression ':' block; // Loop while
 
-forStatement: 'for' ID '=' expression ':' block;          // Loop for
+forStatement: 'for' ID '=' expression ':' block; // Loop for
 
 tryCatchStatement: 'try' ':' block 'catch' '(' ID ')' ':' block; // Tratamento de exceção
 
-returnStatement: 'return' expression;                     // Retorno de função
+returnStatement: 'return' expression; // Retorno de função
 
-expression: term (('*' | '/') term)*;                     // Expressões aritméticas
+expression: term (('*' | '/') term)*; // Expressões aritméticas
 
 term: INT
     | ID
     | STRING
     | '(' expression ')'
-    | functionCall;                                       // Termos em uma expressão
+    | functionCall; // Termos em uma expressão
 
 functionCall: ID '(' (expression (',' expression)*)? ')'; // Chamada de função
 
@@ -53,6 +54,3 @@ MUL: '*';
 DIV: '/';
 ADD: '+';
 SUB: '-';
-
-// Outras regras
-COMMENT: '//' ~[\r\n]* -> skip;                           // Comentários de linha

@@ -69,7 +69,7 @@ public class MainBananaScript {
     }
 
     public static void main(String[] args) throws Exception {
-        CharStream stream = CharStreams.fromFileName("exemplo.script");
+        CharStream stream = CharStreams.fromFileName("banana.ban");
         BananaScriptLexer lexer = new BananaScriptLexer(stream);
         CommonTokenStream tkStream = new CommonTokenStream(lexer);
         BananaScriptParser parser = new BananaScriptParser(tkStream);
@@ -80,7 +80,7 @@ public class MainBananaScript {
             System.out.println("Executando o programa:");
             evaluate(tree);
         } else {
-            System.err.println("Programa possui erros, corrija-os");
+            System.err.println("Programa possui erros, por favor confira a linha e colunas citadas acima.");
         }
     }
 }

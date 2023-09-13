@@ -1,0 +1,7 @@
+// Esse deve ser o arquivo a ser lido pelo compilador de Banana Script (essa linha inclusive, deve ser ignorada!)
+
+fun soma(int valor, intvalor2) int:
+  return valor+valor2
+
+fun main() void :
+  print(soma(1, 2))
