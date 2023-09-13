@@ -6,8 +6,7 @@ Acesse a pasta bananaScript e leia agora o arquivo HOWTORUN.MD para maiores inst
 ``` cd bananaScript ```
 
 Feito em grupo, com a participação de:  
- - [João Gabriel Gila](https://github.com/joaogabrieltg)  
- - [Hélio Augusto](https://github.com/Helin-afm)  
+ - [João Gabriel Gila](https://github.com/joaogabrieltg)
  - [Maria Cecilia](https://github.com/ceciliamedeiros)  
  - [Matheus Souza de Oliveira](https://github.com/patitow)  
  - [Pedro Lyra](https://github.com/PedrolyraC)  
