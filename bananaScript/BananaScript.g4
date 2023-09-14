@@ -8,11 +8,16 @@ WS: [ \t\r\n]+ -> skip; // Espaço em branco (ignorado)
 COMMENT: '//' ~[\r\n]* -> skip; // Comentários de linha
 
 // Regras de parser
-program: function+;     // Programa consiste em uma ou mais funções OK
+program: function+ EOF;     // Programa consiste em uma ou mais funções OK
 
 function: 'fun' ID '(' params ')' type block; // Definição de função OK
 
-params: (param (',' param)*)?; // Lista de parâmetros de função OK
+params: paramOptional?; // Lista de parâmetros de função OK
+
+paramOptional: param paramRecursive*;
+
+paramRecursive: ',' param;
+
 param: type ID;                // Parâmetro da função DEFAULT
 
 type: 'int' | 'float' | 'string' | 'boolean' | 'void' | 'char' | 'double'; // Tipos de dados OK
@@ -25,6 +30,7 @@ statement: assignment // DEFAULT
          | forStatement
          | tryCatchStatement
          | returnStatement;
+        // | print;
 
 assignment: ID '=' expression; // Atribuição de variável OK
 
@@ -38,22 +44,29 @@ forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--')
 
 tryCatchStatement: 'try' ':' block 'catch' '(' ID ')' ':' block; // Tratamento de exceção
 
-returnStatement: 'return' expression ;// Retorno de função
+returnStatement: 'return' expression ; // Retorno de função
 
-expression: term (('*' | '+' | '-' | '/') term)*; // Expressões aritméticas
+expression: term (('*' | '+' | '-' | '/') expression)*; // Expressões aritméticas
 
 booleanExpression: term (('==' | '!=' | '!' | '>=' | '<=' | '&&' | '||') term)*;
 
 term: INT
     | ID
-    | STRING
-    | '(' expression ')'
-    | functionCall; // Termos em uma expressão
+    | STRING 
+    | functionCall; // Termos em uma expressão falta implementar na main
 
-functionCall: ID '(' (expression (',' expression)*)? ')'; // Chamada de função
+functionCall: ID '(' functionExpression? ')'; // Chamada de função
+
+functionExpression: expression functionExpressionRecursive*;
+
+functionExpressionRecursive: ',' expression;
 
 // Definindo prioridade de operadores
 MUL: '*';
 DIV: '/';
 ADD: '+';
 SUB: '-';
+MOD: '%';
+POW: '^';
+
+//print: 'print' '(' term ')'; 

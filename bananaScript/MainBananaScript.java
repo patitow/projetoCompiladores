@@ -13,54 +13,81 @@ public class MainBananaScript {
     }
 
     static String opName(ParseTree t) {
+    if (t instanceof ParserRuleContext) {
         String name = t.getClass().getName();
-        name = name.substring(name.indexOf("$") + 1);
-        name = name.substring(0, name.indexOf("Context"));
+        name = name.substring(name.indexOf("$")+1);
+        name = name.substring(0,name.indexOf("Context"));
+        System.out.println(name);
         return name;
+    } else {
+        return "Unknown"; // Trate casos desconhecidos ou não-contextuais aqui, se necessário
     }
+}
 
     static void generateCode(ParseTree t, BufferedWriter writer) throws IOException {
         switch (opName(t)) {
-            case "program":
+            case "Program":
                 writer.write("public class GeneratedCode {\n");
                 writer.write("    public static void main(String[] args) {\n");
-                writer.write("        System.out.println(main());    \n");
+                writer.write("        main()    \n");
                 writer.write("    }\n\n");
                 for (int c = 0; c < t.getChildCount(); c++) {
                     generateCode(t.getChild(c), writer);
                 }
                 writer.write("  }\n\n");
                 return;
-            case "dunction":
+            case "Function":
                 String functionName = t.getChild(1).getText();
                 String returnType = t.getChild(t.getChildCount() - 2).getText();
                 writer.write("    public " + returnType + " " + functionName + "(");
-                // Processar parâmetros, bloco e outras partes da função aqui
+                ParseTree functionParams = t.getChild(3);
+                generateCode(functionParams, writer);
                 writer.write(") {\n");
                 ParseTree functionBlock = t.getChild(6);
                 generateCode(functionBlock, writer);
                 writer.write("    }\n\n");
                 return;
-            case "params":
-                for (int c = 0; c < t.getChildCount(); c++) {
-                    generateCode(t.getChild(c), writer);
-                    if (c+1 == t.getChildCount() -1) {
-                        writer.write(", ");
-                    }
+            case "Params":
+                if(t.getChild(0) != null){
+                    ParseTree paramTree = t.getChild(0);
+                    generateCode(paramTree, writer);
                 }
                 return;
-            case "type":
+            case "ParamOptional":
+                for (int c = 0; c < t.getChildCount(); c++) {
+                    generateCode(t.getChild(c), writer);
+                }
+                return;
+            case "ParamRecursive":
+                writer.write(", ");
+                generateCode(t.getChild(1), writer);
+                return;
+            case "Param":
+                generateCode(t.getChild(0), writer);
+                writer.write(" ");
+                generateCode(t.getChild(1), writer);
+            case "Type":
                 String typeVariable = t.getChild(0).getText();
                 writer.write(typeVariable);
                 return;
-            case "assignment":
+            case "Block":
+                for (int c = 0; c < t.getChildCount(); c++) {
+                    generateCode(t.getChild(c), writer);
+                    writer.write("\n");
+                }
+                return;
+            case "Statement":
+                ParseTree statExp = t.getChild(0);
+                generateCode(statExp, writer);
+                return;
+            case "Assignment":
                 String variableName = t.getChild(0).getText();
                 ParseTree expression = t.getChild(2);
                 writer.write("        " + variableName + " = ");
                 generateCode(expression, writer);
-                writer.write(";\n");
+                writer.write(";");
                 return;
-            case "ifStatement":
+            case "IfStatement":
                 writer.write("if (");
                 ParseTree expIF = t.getChild(1);
                 generateCode(expIF, writer);
@@ -72,7 +99,7 @@ public class MainBananaScript {
                     generateCode(t.getChild(4), writer);
                 }
                 return;
-            case "elseStatement":
+            case "ElseStatement":
                 writer.write("else {");
                 ParseTree expElse = t.getChild(1);
                 writer.write("\n");
@@ -83,7 +110,7 @@ public class MainBananaScript {
                     generateCode(t.getChild(4), writer);
                 }
                 return;
-            case "whileStatement":
+            case "WhileStatement":
                 writer.write("while (");
                 ParseTree expWhile = t.getChild(1);
                 generateCode(expWhile, writer);
@@ -93,7 +120,7 @@ public class MainBananaScript {
                 writer.write("\n}");
                 return;
             // Adicione mais casos conforme necessário para outros tipos de instruções
-            case "forStatement":
+            case "ForStatement":
                 writer.write("for (int ");
                 ParseTree forID = t.getChild(1);
                 generateCode(forID, writer);
@@ -111,7 +138,7 @@ public class MainBananaScript {
                 generateCode(forBlock, writer);
                 writer.write("\n}");
                 return;       
-            case "tryCatchStatement":
+            case "TryCatchStatement":
                 writer.write("try {\n");
                 ParseTree tryBody = t.getChild(1);
                 generateCode(tryBody, writer);
@@ -120,24 +147,60 @@ public class MainBananaScript {
                 ParseTree catchBody = t.getChild(10);
                 generateCode(catchBody, writer);
                 writer.write("}\n");
-            case "returnStatement":
-                String returnReturn = t.getChild(1).getText();
-                writer.write("return " + returnReturn + ";\n");
+            case "ReturnStatement":
+                ParseTree returnReturn = t.getChild(1);
+                writer.write("return ");
+                generateCode(returnReturn, writer);
+                writer.write(";\n");
                 return;
-            case "expressionStatement": // term (('*' | '+' | '-' | '/') term)*;
-                ParseTree expExp = t.getChild(0);
-                generateCode(expExp, writer);
-                String expOperator = t.getChild(1).getText();
-                writer.write(" " + expOperator + " ");
-                ParseTree expExp1 = t.getChild(2);
-                generateCode(expExp1, writer);
+            case "Term": 
+                ParseTree expTerm = t.getChild(0);
+                generateCode(expTerm, writer);
                 return;
-            default:
+            case "FunctionCall":  // ID '(' functionExpression? ')'; // Chamada de função
+                ParseTree funC = t.getChild(0);
+                generateCode(funC, writer);
+                writer.write("(");
+                ParseTree funExp = t.getChild(2);
+                generateCode(funExp, writer);
+                writer.write(")");
+                return;
+            case "FunctionExpression":  // ID '(' functionExpression? ')'; // Chamada de função
                 for (int c = 0; c < t.getChildCount(); c++) {
                     generateCode(t.getChild(c), writer);
                 }
-                if (t.getChildCount() == 1) {
-                    writer.write(t.getChild(0).getText());
+                return;
+            case "FunctionExpressionRecursive":  // ID '(' functionExpression? ')'; // Chamada de função
+                writer.write(", ");
+                ParseTree funExpR = t.getChild(1);
+                generateCode(funExpR, writer);
+                return;
+            case "Expression": 
+                ParseTree expExp = t.getChild(0);
+                generateCode(expExp, writer);
+                if (t.getChildCount() > 1){
+                    String expOperator = t.getChild(1).getText();
+                    writer.write(" " + expOperator + " ");
+                    ParseTree expExp1 = t.getChild(2);
+                    generateCode(expExp1, writer);
+                }
+                return;
+            case "Print":
+                writer.write("System.out.println(");
+                ParseTree printTerm = t.getChild(2);
+                generateCode(printTerm, writer);
+                writer.write(");");
+                return;
+            default:
+                if(t.getChildCount()>0){
+                    for (int c = 0; c < t.getChildCount(); c++) {
+                        //generateCode(t.getChild(c), writer);
+                        writer.write(t.getChild(c).getText()+" ");
+                    }
+                } else {
+                    if(t.getText() != "<EOF>"){
+                        writer.write(t.getText());
+                    }
                 }
                 return;
         }

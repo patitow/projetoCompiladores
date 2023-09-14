@@ -769,7 +769,7 @@ public class BananaScriptParser extends Parser {
 	}
 
 	public final ReturnStatementContext returnStatement() throws RecognitionException {
-		ReturnStatementContext _localctx = new ReturnStatementContext(_ctx, getState());
+		ReturnStatementContext _localctx = new ReturnStatementContextpara(_ctx, getState());
 		enterRule(_localctx, 26, RULE_returnStatement);
 		try {
 			enterOuterAlt(_localctx, 1);

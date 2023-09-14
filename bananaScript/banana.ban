@@ -2,6 +2,8 @@ fun soma(int a, int b) int
   return a+b
 
 fun main() void 
-  print(soma(1, 2))
+  a = 10
+  b = 5
+  c = a + b
 
 // Comentário
