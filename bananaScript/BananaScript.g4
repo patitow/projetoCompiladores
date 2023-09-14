@@ -15,7 +15,7 @@ function: 'fun' ID '(' params ')' type block; // Definição de função
 params: (param (',' param)*)?; // Lista de parâmetros de função
 param: type ID;                // Parâmetro da função
 
-type: 'int' | 'float' | 'string' | 'boolean' | 'void' | ID; // Tipos de dados
+type: 'int' | 'float' | 'string' | 'boolean' | 'void' | 'char' | 'double' | ID; // Tipos de dados
 
 block: statement+; // Bloco de código
 
