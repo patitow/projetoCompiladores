@@ -1,7 +1,6 @@
 fun soma(int a, int b) int 
   return a+b
 
-
 fun main() void 
   print(soma(1, 2))
 

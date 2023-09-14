@@ -1,86 +1,109 @@
+import java.io.*;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
-import java.util.*;
 
 public class MainBananaScript {
 
-    static HashMap<String, Object> vars = new HashMap<String, Object>();
-    
-    static Object evaluate(ParseTree t) {
-        switch (t.getClass().getSimpleName()) {
-            case "ProgramContext":
-                for (int i = 0; i < t.getChildCount(); i++) {
-                    evaluate(t.getChild(i));
-                }
-                return null;
-            case "AssignmentContext": {
-                String vName = t.getChild(0).getText();
-                Object value = evaluate(t.getChild(2));
-                vars.put(vName, value);
-                return null;
-            }
-            case "PrintContext": {
-                Object value = evaluate(t.getChild(1));
-                System.out.print(value);
-                return null;
-            }
-            case "SeqContext":
+    static void print(String fmt, Object... args) {
+        System.out.print(String.format(fmt, args));
+    }
+
+    static void println(String fmt, Object... args) {
+        System.out.println(String.format(fmt, args));
+    }
+
+    static String opName(ParseTree t) {
+        String name = t.getClass().getName();
+        name = name.substring(name.indexOf("$") + 1);
+        name = name.substring(0, name.indexOf("Context"));
+        return name;
+    }
+
+    static void generateCode(ParseTree t, BufferedWriter writer) throws IOException {
+        switch (opName(t)) {
+            case "Program":
+                writer.write("public class GeneratedCode {\n");
                 for (int c = 0; c < t.getChildCount(); c++) {
-                    evaluate(t.getChild(c));
+                    generateCode(t.getChild(c), writer);
                 }
-                return null;
-            case "ConstContext":
-                return t.getText();
-            case "VarContext": {
-                String vName = t.getText();
-                if (vars.containsKey(vName)) {
-                    return vars.get(vName);
-                } else {
-                    System.err.println("Variável não declarada: " + vName);
-                    return null;
+                writer.write("    public static void main(String[] args) {\n");
+                writer.write("        System.out.println(main());\n");
+                writer.write("    }\n");
+                writer.write("}\n");
+                return;
+            case "Function":
+                String functionName = t.getChild(1).getText();
+                String returnType = t.getChild(t.getChildCount() - 2).getText();
+                writer.write("    public static " + returnType + " " + functionName + "(");
+                if (t.getChildCount() > 5) {
+                    for (int i = 3; i < t.getChildCount() - 2; i += 2) {
+                        String paramType = t.getChild(i - 1).getText();
+                        String paramName = t.getChild(i).getText();
+                        writer.write(paramType + " " + paramName);
+                        if (i < t.getChildCount() - 3) {
+                            writer.write(", ");
+                        }
+                    }
                 }
-            }
-            case "OpContext": {
-                Object left = evaluate(t.getChild(0));
-                Object right = evaluate(t.getChild(2));
-                String op = t.getChild(1).getText();
-                switch (op) {
-                    case "+":
-                        return (double) left + (double) right;
-                    case "-":
-                        return (double) left - (double) right;
-                    case "*":
-                        return (double) left * (double) right;
-                    case "/":
-                        return (double) left / (double) right;
-                    case "==":
-                        return left.equals(right);
-                    case "!=":
-                        return !left.equals(right);
-                    default:
-                        System.err.println("Operador não suportado: " + op);
-                        return null;
+                writer.write(") {\n");
+                // Processar o bloco da função aqui
+                generateCode(t.getChild(t.getChildCount() - 1), writer);
+                writer.write("    }\n");
+                return;
+            case "ReturnStatement":
+                ParseTree expression = t.getChild(1);
+                writer.write("        return ");
+                generateCode(expression, writer);
+                writer.write(";\n");
+                return;
+            case "FunctionCall":
+                String functionNameCall = t.getChild(0).getText();
+                writer.write(functionNameCall + "(");
+                if (t.getChildCount() > 2) {
+                    for (int i = 1; i < t.getChildCount() - 1; i += 2) {
+                        generateCode(t.getChild(i), writer);
+                        if (i < t.getChildCount() - 2) {
+                            writer.write(", ");
+                        }
+                    }
                 }
-            }
+                writer.write(")");
+                return;
+            case "Int":
+            case "String":
+            case "ID":
+                writer.write(t.getText());
+                return;
             default:
-                System.err.println("Contexto não suportado: " + t.getClass().getSimpleName());
-                return null;
+                for (int i = 0; i < t.getChildCount(); i++) {
+                    generateCode(t.getChild(i), writer);
+                }
         }
     }
 
     public static void main(String[] args) throws Exception {
         CharStream stream = CharStreams.fromFileName("banana.ban");
         BananaScriptLexer lexer = new BananaScriptLexer(stream);
-        CommonTokenStream tkStream = new CommonTokenStream(lexer);
-        BananaScriptParser parser = new BananaScriptParser(tkStream);
+        TokenStream tokenStream = new CommonTokenStream(lexer);
+        BananaScriptParser parser = new BananaScriptParser(tokenStream);
 
         ParseTree tree = parser.program();
-        if (parser.getNumberOfSyntaxErrors() == 0) {
+        if (parser.getNumberOfSyntaxErrors() == 0)
             System.out.println("Programa reconhecido corretamente");
-            System.out.println("Executando o programa:");
-            evaluate(tree);
-        } else {
-            System.err.println("Programa possui erros, por favor confira a linha e colunas citadas acima.");
+        else {
+            System.out.println("Programa possui erros, corrija-os");
+            return;
         }
+
+        File outputDir = new File("out");
+        outputDir.mkdir(); // Cria a pasta 'out' se ela não existir
+
+        File outputFile = new File(outputDir, "GeneratedCode.java");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+
+        println("Gerando artefatos de código em %s:", outputFile.getAbsolutePath());
+        generateCode(tree, writer);
+
+        writer.close();
     }
 }
