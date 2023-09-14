@@ -4,11 +4,11 @@ grammar BananaScript;
 ID: [a-zA-Z]+;         // Identificadores (nomes de variáveis, funções, etc.)
 INT: [0-9]+;           // Números inteiros
 STRING: '"' ~["\r\n]* '"'; // Strings delimitadas por aspas duplas
-WS: [ \t\r\n]+ -> skip; // Espaço em branco (ignorado)
+WS: (' '|'\n')+ -> skip; // Espaço em branco (ignorado)
 COMMENT: '//' ~[\r\n]* -> skip; // Comentários de linha
 
 // Regras de parser
-program: function+;     // Programa consiste em uma ou mais funções
+program: function* EOF;     // Programa consiste em uma ou mais funções
 
 function: 'fun' ID '(' params ')' type block; // Definição de função
 
@@ -39,7 +39,7 @@ tryCatchStatement: 'try' ':' block 'catch' '(' ID ')' ':' block; // Tratamento d
 
 returnStatement: 'return' expression; // Retorno de função
 
-expression: term (('*' | '/') term)*; // Expressões aritméticas
+expression: term (('*' | '+' | '-' | '/') term)*; // Expressões aritméticas
 
 term: INT
     | ID
