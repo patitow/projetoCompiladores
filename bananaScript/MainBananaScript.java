@@ -40,6 +40,18 @@ public class MainBananaScript {
                 // Escrever a lógica da função aqui
                 writer.write("    }\n\n");
                 return;
+            case "Params":
+                for (int c = 0; c < t.getChildCount(); c++) {
+                    generateCode(t.getChild(c), writer);
+                    if(c+1 == t.getChildCount() -1 ){
+                        writer.write(", ");
+                    }
+                }
+                return;
+            case "Type":
+                String typeVariable = t.getChild(0).getText();
+                writer.write(typeVariable + ' ', writer);
+                return;
             case "Assignment":
                 String variableName = t.getChild(0).getText();
                 ParseTree expression = t.getChild(2);
@@ -47,14 +59,39 @@ public class MainBananaScript {
                 generateCode(expression, writer);
                 writer.write(";\n");
                 return;
+            case "IfStatement":
+                writer.write("if (");
+                ParseTree expIF = t.getChild(1);
+                generateCode(expIF, writer);
+                writer.write(") {\n");
+                ParseTree ifBlock = t.getChild(3);
+                generateCode(expIF, writer);
+                writer.write("\n}");
+                if(t.getChildCount() == 4){
+                    generateCode(t.getChild(4), writer);
+                }
+                return;
+            case "ElseStatement":
+                
+                return;
+            case "WhileStatement":
+                writer.write("while (");
+                ParseTree expWhile = t.getChild(1);
             // Adicione mais casos conforme necessário para outros tipos de instruções
+            case "ForStatement":
+                writer.write("for (int ");
+                ParseTree forID = 
+                generateCode(t.getChild(1), writer);
+                
+            case "returnStatement":
+                String returnReturn = t.getChild(1).getText();
+                writer.write("return " + returnReturn + ";\n");
             default:
-                // Tratar outros tipos de instruções aqui
+                for (int c = 0; c < t.getChildCount(); c++) {
+                    generateCode(t.getChild(c), writer);
+                }
+                return;
         }
-    }
-
-    public void run(String[] args) {
-        // Implementar a lógica para executar os argumentos da main aqui
     }
 
     public static void main(String[] args) throws Exception {

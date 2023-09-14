@@ -8,38 +8,41 @@ WS: [ \t\r\n]+ -> skip; // Espaço em branco (ignorado)
 COMMENT: '//' ~[\r\n]* -> skip; // Comentários de linha
 
 // Regras de parser
-program: function+;     // Programa consiste em uma ou mais funções
+program: function+;     // Programa consiste em uma ou mais funções OK
 
-function: 'fun' ID '(' params ')' type block; // Definição de função
+function: 'fun' ID '(' params ')' type block; // Definição de função OK
 
-params: (param (',' param)*)?; // Lista de parâmetros de função
-param: type ID;                // Parâmetro da função
+params: (param (',' param)*)?; // Lista de parâmetros de função OK
+param: type ID;                // Parâmetro da função DEFAULT
 
-type: 'int' | 'float' | 'string' | 'boolean' | 'void' | 'char' | 'double' | ID; // Tipos de dados
+type: 'int' | 'float' | 'string' | 'boolean' | 'void' | 'char' | 'double'; // Tipos de dados OK
 
-block: statement+; // Bloco de código
+block: statement+; // Bloco de código DEFAULT
 
-statement: assignment
+statement: assignment // DEFAULT
          | ifStatement
          | whileStatement
          | forStatement
          | tryCatchStatement
-         | returnStatement
-         | expression; // Diferentes tipos de instruções
+         | returnStatement;
 
-assignment: ID '=' expression; // Atribuição de variável
+assignment: ID '=' expression; // Atribuição de variável OK
 
-ifStatement: 'if' expression ':' block ('else' block)?; // Estrutura condicional if
+ifStatement: 'if' booleanExpression ':' block  elseStatement?; // Estrutura condicional if
 
-whileStatement: 'while' expression ':' block; // Loop while
+elseStatement: 'else' block;
 
-forStatement: 'for' ID '=' expression ':' block; // Loop for
+whileStatement: 'while' booleanExpression ':' block; // Loop while
+
+forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') ':' block; // Loop for
 
 tryCatchStatement: 'try' ':' block 'catch' '(' ID ')' ':' block; // Tratamento de exceção
 
-returnStatement: 'return' expression; // Retorno de função
+returnStatement: 'return' expression ;// Retorno de função
 
-expression: term (('*' | '/') term)*; // Expressões aritméticas
+expression: term (('*' | '+' | '-' | '/') term)*; // Expressões aritméticas
+
+booleanExpression: term (('==' | '!=' | '!' | '>=' | '<=' | '&&' | '||') term)*;
 
 term: INT
     | ID
