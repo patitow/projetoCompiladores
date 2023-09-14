@@ -24,12 +24,12 @@ public class MainBananaScript {
             case "Program":
                 writer.write("public class GeneratedCode {\n");
                 writer.write("    public static void main(String[] args) {\n");
-                writer.write("        GeneratedCode generatedCode = new GeneratedCode();\n");
-                writer.write("        generatedCode.run(args);\n");
+                writer.write("        System.out.println(main());    \n");
                 writer.write("    }\n\n");
                 for (int c = 0; c < t.getChildCount(); c++) {
                     generateCode(t.getChild(c), writer);
                 }
+                writer.write("  }\n\n");
                 return;
             case "Function":
                 String functionName = t.getChild(1).getText();
