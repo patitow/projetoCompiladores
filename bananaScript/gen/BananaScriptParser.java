@@ -18,8 +18,8 @@ public class BananaScriptParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, ID=19, INT=20, STRING=21, WS=22, COMMENT=23, MUL=24, DIV=25, 
-		ADD=26, SUB=27;
+		T__17=18, T__18=19, T__19=20, ID=21, INT=22, STRING=23, WS=24, COMMENT=25, 
+		MUL=26, DIV=27, ADD=28, SUB=29;
 	public static final int
 		RULE_program = 0, RULE_function = 1, RULE_params = 2, RULE_param = 3, 
 		RULE_type = 4, RULE_block = 5, RULE_statement = 6, RULE_assignment = 7, 
@@ -38,17 +38,17 @@ public class BananaScriptParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'fun'", "'('", "')'", "','", "'int'", "'float'", "'string'", "'boolean'", 
-			"'void'", "'='", "'if'", "':'", "'else'", "'while'", "'for'", "'try'", 
-			"'catch'", "'return'", null, null, null, null, null, "'*'", "'/'", "'+'", 
-			"'-'"
+			"'void'", "'char'", "'double'", "'='", "'if'", "':'", "'else'", "'while'", 
+			"'for'", "'try'", "'catch'", "'return'", null, null, null, null, null, 
+			"'*'", "'/'", "'+'", "'-'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, "ID", "INT", "STRING", "WS", 
-			"COMMENT", "MUL", "DIV", "ADD", "SUB"
+			null, null, null, null, null, null, null, null, null, "ID", "INT", "STRING", 
+			"WS", "COMMENT", "MUL", "DIV", "ADD", "SUB"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -122,6 +122,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitProgram(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitProgram(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -182,6 +187,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitFunction(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitFunction(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FunctionContext function() throws RecognitionException {
@@ -237,6 +247,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitParams(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitParams(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ParamsContext params() throws RecognitionException {
@@ -249,7 +264,7 @@ public class BananaScriptParser extends Parser {
 			setState(53);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 525280L) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 2101216L) != 0)) {
 				{
 				setState(45);
 				param();
@@ -303,6 +318,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitParam(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitParam(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ParamContext param() throws RecognitionException {
@@ -343,6 +363,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitType(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitType(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TypeContext type() throws RecognitionException {
@@ -354,7 +379,7 @@ public class BananaScriptParser extends Parser {
 			{
 			setState(58);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 525280L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 2101216L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -394,6 +419,11 @@ public class BananaScriptParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitBlock(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitBlock(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -471,6 +501,11 @@ public class BananaScriptParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitStatement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -561,6 +596,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitAssignment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitAssignment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AssignmentContext assignment() throws RecognitionException {
@@ -572,7 +612,7 @@ public class BananaScriptParser extends Parser {
 			setState(74);
 			match(ID);
 			setState(75);
-			match(T__9);
+			match(T__11);
 			setState(76);
 			expression();
 			}
@@ -611,6 +651,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitIfStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitIfStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final IfStatementContext ifStatement() throws RecognitionException {
@@ -620,11 +665,11 @@ public class BananaScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(78);
-			match(T__10);
+			match(T__12);
 			setState(79);
 			expression();
 			setState(80);
-			match(T__11);
+			match(T__13);
 			setState(81);
 			block();
 			setState(84);
@@ -633,7 +678,7 @@ public class BananaScriptParser extends Parser {
 			case 1:
 				{
 				setState(82);
-				match(T__12);
+				match(T__14);
 				setState(83);
 				block();
 				}
@@ -672,6 +717,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitWhileStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitWhileStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final WhileStatementContext whileStatement() throws RecognitionException {
@@ -681,11 +731,11 @@ public class BananaScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(86);
-			match(T__13);
+			match(T__15);
 			setState(87);
 			expression();
 			setState(88);
-			match(T__11);
+			match(T__13);
 			setState(89);
 			block();
 			}
@@ -722,6 +772,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitForStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitForStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ForStatementContext forStatement() throws RecognitionException {
@@ -731,15 +786,15 @@ public class BananaScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(91);
-			match(T__14);
+			match(T__16);
 			setState(92);
 			match(ID);
 			setState(93);
-			match(T__9);
+			match(T__11);
 			setState(94);
 			expression();
 			setState(95);
-			match(T__11);
+			match(T__13);
 			setState(96);
 			block();
 			}
@@ -776,6 +831,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitTryCatchStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitTryCatchStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TryCatchStatementContext tryCatchStatement() throws RecognitionException {
@@ -785,13 +845,13 @@ public class BananaScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(98);
-			match(T__15);
+			match(T__17);
 			setState(99);
-			match(T__11);
+			match(T__13);
 			setState(100);
 			block();
 			setState(101);
-			match(T__16);
+			match(T__18);
 			setState(102);
 			match(T__1);
 			setState(103);
@@ -799,7 +859,7 @@ public class BananaScriptParser extends Parser {
 			setState(104);
 			match(T__2);
 			setState(105);
-			match(T__11);
+			match(T__13);
 			setState(106);
 			block();
 			}
@@ -832,6 +892,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitReturnStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitReturnStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ReturnStatementContext returnStatement() throws RecognitionException {
@@ -841,7 +906,7 @@ public class BananaScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(108);
-			match(T__17);
+			match(T__19);
 			setState(109);
 			expression();
 			}
@@ -884,6 +949,11 @@ public class BananaScriptParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -955,6 +1025,11 @@ public class BananaScriptParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitTerm(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitTerm(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1038,6 +1113,11 @@ public class BananaScriptParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BananaScriptListener ) ((BananaScriptListener)listener).exitFunctionCall(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BananaScriptVisitor ) return ((BananaScriptVisitor<? extends T>)visitor).visitFunctionCall(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FunctionCallContext functionCall() throws RecognitionException {
@@ -1054,7 +1134,7 @@ public class BananaScriptParser extends Parser {
 			setState(139);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 3670020L) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 14680068L) != 0)) {
 				{
 				setState(131);
 				expression();
@@ -1093,7 +1173,7 @@ public class BananaScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u001b\u0090\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
+		"\u0004\u0001\u001d\u0090\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
 		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
 		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
 		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b"+
@@ -1116,9 +1196,9 @@ public class BananaScriptParser extends Parser {
 		"\u000f\u0087\b\u000f\n\u000f\f\u000f\u008a\t\u000f\u0003\u000f\u008c\b"+
 		"\u000f\u0001\u000f\u0001\u000f\u0001\u000f\u0000\u0000\u0010\u0000\u0002"+
 		"\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e"+
-		"\u0000\u0002\u0002\u0000\u0005\t\u0013\u0013\u0001\u0000\u0018\u0019\u0091"+
-		"\u0000!\u0001\u0000\u0000\u0000\u0002%\u0001\u0000\u0000\u0000\u00045"+
-		"\u0001\u0000\u0000\u0000\u00067\u0001\u0000\u0000\u0000\b:\u0001\u0000"+
+		"\u0000\u0002\u0002\u0000\u0005\u000b\u0015\u0015\u0001\u0000\u001a\u001b"+
+		"\u0091\u0000!\u0001\u0000\u0000\u0000\u0002%\u0001\u0000\u0000\u0000\u0004"+
+		"5\u0001\u0000\u0000\u0000\u00067\u0001\u0000\u0000\u0000\b:\u0001\u0000"+
 		"\u0000\u0000\n=\u0001\u0000\u0000\u0000\fH\u0001\u0000\u0000\u0000\u000e"+
 		"J\u0001\u0000\u0000\u0000\u0010N\u0001\u0000\u0000\u0000\u0012V\u0001"+
 		"\u0000\u0000\u0000\u0014[\u0001\u0000\u0000\u0000\u0016b\u0001\u0000\u0000"+
@@ -1126,7 +1206,7 @@ public class BananaScriptParser extends Parser {
 		"\u007f\u0001\u0000\u0000\u0000\u001e\u0081\u0001\u0000\u0000\u0000 \""+
 		"\u0003\u0002\u0001\u0000! \u0001\u0000\u0000\u0000\"#\u0001\u0000\u0000"+
 		"\u0000#!\u0001\u0000\u0000\u0000#$\u0001\u0000\u0000\u0000$\u0001\u0001"+
-		"\u0000\u0000\u0000%&\u0005\u0001\u0000\u0000&\'\u0005\u0013\u0000\u0000"+
+		"\u0000\u0000\u0000%&\u0005\u0001\u0000\u0000&\'\u0005\u0015\u0000\u0000"+
 		"\'(\u0005\u0002\u0000\u0000()\u0003\u0004\u0002\u0000)*\u0005\u0003\u0000"+
 		"\u0000*+\u0003\b\u0004\u0000+,\u0003\n\u0005\u0000,\u0003\u0001\u0000"+
 		"\u0000\u0000-2\u0003\u0006\u0003\u0000./\u0005\u0004\u0000\u0000/1\u0003"+
@@ -1134,7 +1214,7 @@ public class BananaScriptParser extends Parser {
 		"20\u0001\u0000\u0000\u000023\u0001\u0000\u0000\u000036\u0001\u0000\u0000"+
 		"\u000042\u0001\u0000\u0000\u00005-\u0001\u0000\u0000\u000056\u0001\u0000"+
 		"\u0000\u00006\u0005\u0001\u0000\u0000\u000078\u0003\b\u0004\u000089\u0005"+
-		"\u0013\u0000\u00009\u0007\u0001\u0000\u0000\u0000:;\u0007\u0000\u0000"+
+		"\u0015\u0000\u00009\u0007\u0001\u0000\u0000\u0000:;\u0007\u0000\u0000"+
 		"\u0000;\t\u0001\u0000\u0000\u0000<>\u0003\f\u0006\u0000=<\u0001\u0000"+
 		"\u0000\u0000>?\u0001\u0000\u0000\u0000?=\u0001\u0000\u0000\u0000?@\u0001"+
 		"\u0000\u0000\u0000@\u000b\u0001\u0000\u0000\u0000AI\u0003\u000e\u0007"+
@@ -1143,37 +1223,37 @@ public class BananaScriptParser extends Parser {
 		"HA\u0001\u0000\u0000\u0000HB\u0001\u0000\u0000\u0000HC\u0001\u0000\u0000"+
 		"\u0000HD\u0001\u0000\u0000\u0000HE\u0001\u0000\u0000\u0000HF\u0001\u0000"+
 		"\u0000\u0000HG\u0001\u0000\u0000\u0000I\r\u0001\u0000\u0000\u0000JK\u0005"+
-		"\u0013\u0000\u0000KL\u0005\n\u0000\u0000LM\u0003\u001a\r\u0000M\u000f"+
-		"\u0001\u0000\u0000\u0000NO\u0005\u000b\u0000\u0000OP\u0003\u001a\r\u0000"+
-		"PQ\u0005\f\u0000\u0000QT\u0003\n\u0005\u0000RS\u0005\r\u0000\u0000SU\u0003"+
-		"\n\u0005\u0000TR\u0001\u0000\u0000\u0000TU\u0001\u0000\u0000\u0000U\u0011"+
-		"\u0001\u0000\u0000\u0000VW\u0005\u000e\u0000\u0000WX\u0003\u001a\r\u0000"+
-		"XY\u0005\f\u0000\u0000YZ\u0003\n\u0005\u0000Z\u0013\u0001\u0000\u0000"+
-		"\u0000[\\\u0005\u000f\u0000\u0000\\]\u0005\u0013\u0000\u0000]^\u0005\n"+
-		"\u0000\u0000^_\u0003\u001a\r\u0000_`\u0005\f\u0000\u0000`a\u0003\n\u0005"+
-		"\u0000a\u0015\u0001\u0000\u0000\u0000bc\u0005\u0010\u0000\u0000cd\u0005"+
-		"\f\u0000\u0000de\u0003\n\u0005\u0000ef\u0005\u0011\u0000\u0000fg\u0005"+
-		"\u0002\u0000\u0000gh\u0005\u0013\u0000\u0000hi\u0005\u0003\u0000\u0000"+
-		"ij\u0005\f\u0000\u0000jk\u0003\n\u0005\u0000k\u0017\u0001\u0000\u0000"+
-		"\u0000lm\u0005\u0012\u0000\u0000mn\u0003\u001a\r\u0000n\u0019\u0001\u0000"+
-		"\u0000\u0000ot\u0003\u001c\u000e\u0000pq\u0007\u0001\u0000\u0000qs\u0003"+
-		"\u001c\u000e\u0000rp\u0001\u0000\u0000\u0000sv\u0001\u0000\u0000\u0000"+
-		"tr\u0001\u0000\u0000\u0000tu\u0001\u0000\u0000\u0000u\u001b\u0001\u0000"+
-		"\u0000\u0000vt\u0001\u0000\u0000\u0000w\u0080\u0005\u0014\u0000\u0000"+
-		"x\u0080\u0005\u0013\u0000\u0000y\u0080\u0005\u0015\u0000\u0000z{\u0005"+
-		"\u0002\u0000\u0000{|\u0003\u001a\r\u0000|}\u0005\u0003\u0000\u0000}\u0080"+
-		"\u0001\u0000\u0000\u0000~\u0080\u0003\u001e\u000f\u0000\u007fw\u0001\u0000"+
-		"\u0000\u0000\u007fx\u0001\u0000\u0000\u0000\u007fy\u0001\u0000\u0000\u0000"+
-		"\u007fz\u0001\u0000\u0000\u0000\u007f~\u0001\u0000\u0000\u0000\u0080\u001d"+
-		"\u0001\u0000\u0000\u0000\u0081\u0082\u0005\u0013\u0000\u0000\u0082\u008b"+
-		"\u0005\u0002\u0000\u0000\u0083\u0088\u0003\u001a\r\u0000\u0084\u0085\u0005"+
-		"\u0004\u0000\u0000\u0085\u0087\u0003\u001a\r\u0000\u0086\u0084\u0001\u0000"+
-		"\u0000\u0000\u0087\u008a\u0001\u0000\u0000\u0000\u0088\u0086\u0001\u0000"+
-		"\u0000\u0000\u0088\u0089\u0001\u0000\u0000\u0000\u0089\u008c\u0001\u0000"+
-		"\u0000\u0000\u008a\u0088\u0001\u0000\u0000\u0000\u008b\u0083\u0001\u0000"+
-		"\u0000\u0000\u008b\u008c\u0001\u0000\u0000\u0000\u008c\u008d\u0001\u0000"+
-		"\u0000\u0000\u008d\u008e\u0005\u0003\u0000\u0000\u008e\u001f\u0001\u0000"+
-		"\u0000\u0000\n#25?HTt\u007f\u0088\u008b";
+		"\u0015\u0000\u0000KL\u0005\f\u0000\u0000LM\u0003\u001a\r\u0000M\u000f"+
+		"\u0001\u0000\u0000\u0000NO\u0005\r\u0000\u0000OP\u0003\u001a\r\u0000P"+
+		"Q\u0005\u000e\u0000\u0000QT\u0003\n\u0005\u0000RS\u0005\u000f\u0000\u0000"+
+		"SU\u0003\n\u0005\u0000TR\u0001\u0000\u0000\u0000TU\u0001\u0000\u0000\u0000"+
+		"U\u0011\u0001\u0000\u0000\u0000VW\u0005\u0010\u0000\u0000WX\u0003\u001a"+
+		"\r\u0000XY\u0005\u000e\u0000\u0000YZ\u0003\n\u0005\u0000Z\u0013\u0001"+
+		"\u0000\u0000\u0000[\\\u0005\u0011\u0000\u0000\\]\u0005\u0015\u0000\u0000"+
+		"]^\u0005\f\u0000\u0000^_\u0003\u001a\r\u0000_`\u0005\u000e\u0000\u0000"+
+		"`a\u0003\n\u0005\u0000a\u0015\u0001\u0000\u0000\u0000bc\u0005\u0012\u0000"+
+		"\u0000cd\u0005\u000e\u0000\u0000de\u0003\n\u0005\u0000ef\u0005\u0013\u0000"+
+		"\u0000fg\u0005\u0002\u0000\u0000gh\u0005\u0015\u0000\u0000hi\u0005\u0003"+
+		"\u0000\u0000ij\u0005\u000e\u0000\u0000jk\u0003\n\u0005\u0000k\u0017\u0001"+
+		"\u0000\u0000\u0000lm\u0005\u0014\u0000\u0000mn\u0003\u001a\r\u0000n\u0019"+
+		"\u0001\u0000\u0000\u0000ot\u0003\u001c\u000e\u0000pq\u0007\u0001\u0000"+
+		"\u0000qs\u0003\u001c\u000e\u0000rp\u0001\u0000\u0000\u0000sv\u0001\u0000"+
+		"\u0000\u0000tr\u0001\u0000\u0000\u0000tu\u0001\u0000\u0000\u0000u\u001b"+
+		"\u0001\u0000\u0000\u0000vt\u0001\u0000\u0000\u0000w\u0080\u0005\u0016"+
+		"\u0000\u0000x\u0080\u0005\u0015\u0000\u0000y\u0080\u0005\u0017\u0000\u0000"+
+		"z{\u0005\u0002\u0000\u0000{|\u0003\u001a\r\u0000|}\u0005\u0003\u0000\u0000"+
+		"}\u0080\u0001\u0000\u0000\u0000~\u0080\u0003\u001e\u000f\u0000\u007fw"+
+		"\u0001\u0000\u0000\u0000\u007fx\u0001\u0000\u0000\u0000\u007fy\u0001\u0000"+
+		"\u0000\u0000\u007fz\u0001\u0000\u0000\u0000\u007f~\u0001\u0000\u0000\u0000"+
+		"\u0080\u001d\u0001\u0000\u0000\u0000\u0081\u0082\u0005\u0015\u0000\u0000"+
+		"\u0082\u008b\u0005\u0002\u0000\u0000\u0083\u0088\u0003\u001a\r\u0000\u0084"+
+		"\u0085\u0005\u0004\u0000\u0000\u0085\u0087\u0003\u001a\r\u0000\u0086\u0084"+
+		"\u0001\u0000\u0000\u0000\u0087\u008a\u0001\u0000\u0000\u0000\u0088\u0086"+
+		"\u0001\u0000\u0000\u0000\u0088\u0089\u0001\u0000\u0000\u0000\u0089\u008c"+
+		"\u0001\u0000\u0000\u0000\u008a\u0088\u0001\u0000\u0000\u0000\u008b\u0083"+
+		"\u0001\u0000\u0000\u0000\u008b\u008c\u0001\u0000\u0000\u0000\u008c\u008d"+
+		"\u0001\u0000\u0000\u0000\u008d\u008e\u0005\u0003\u0000\u0000\u008e\u001f"+
+		"\u0001\u0000\u0000\u0000\n#25?HTt\u007f\u0088\u008b";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
