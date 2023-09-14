@@ -23,62 +23,38 @@ public class MainBananaScript {
         switch (opName(t)) {
             case "Program":
                 writer.write("public class GeneratedCode {\n");
+                writer.write("    public static void main(String[] args) {\n");
+                writer.write("        GeneratedCode generatedCode = new GeneratedCode();\n");
+                writer.write("        generatedCode.run(args);\n");
+                writer.write("    }\n\n");
                 for (int c = 0; c < t.getChildCount(); c++) {
                     generateCode(t.getChild(c), writer);
                 }
-                writer.write("    public static void main(String[] args) {\n");
-                writer.write("        System.out.println(main());\n");
-                writer.write("    }\n");
-                writer.write("}\n");
                 return;
             case "Function":
                 String functionName = t.getChild(1).getText();
                 String returnType = t.getChild(t.getChildCount() - 2).getText();
-                writer.write("    public static " + returnType + " " + functionName + "(");
-                if (t.getChildCount() > 5) {
-                    for (int i = 3; i < t.getChildCount() - 2; i += 2) {
-                        String paramType = t.getChild(i - 1).getText();
-                        String paramName = t.getChild(i).getText();
-                        writer.write(paramType + " " + paramName);
-                        if (i < t.getChildCount() - 3) {
-                            writer.write(", ");
-                        }
-                    }
-                }
+                writer.write("    public " + returnType + " " + functionName + "(");
+                // Processar parâmetros, bloco e outras partes da função aqui
                 writer.write(") {\n");
-                // Processar o bloco da função aqui
-                generateCode(t.getChild(t.getChildCount() - 1), writer);
-                writer.write("    }\n");
+                // Escrever a lógica da função aqui
+                writer.write("    }\n\n");
                 return;
-            case "ReturnStatement":
-                ParseTree expression = t.getChild(1);
-                writer.write("        return ");
+            case "Assignment":
+                String variableName = t.getChild(0).getText();
+                ParseTree expression = t.getChild(2);
+                writer.write("        " + variableName + " = ");
                 generateCode(expression, writer);
                 writer.write(";\n");
                 return;
-            case "FunctionCall":
-                String functionNameCall = t.getChild(0).getText();
-                writer.write(functionNameCall + "(");
-                if (t.getChildCount() > 2) {
-                    for (int i = 1; i < t.getChildCount() - 1; i += 2) {
-                        generateCode(t.getChild(i), writer);
-                        if (i < t.getChildCount() - 2) {
-                            writer.write(", ");
-                        }
-                    }
-                }
-                writer.write(")");
-                return;
-            case "Int":
-            case "String":
-            case "ID":
-                writer.write(t.getText());
-                return;
+            // Adicione mais casos conforme necessário para outros tipos de instruções
             default:
-                for (int i = 0; i < t.getChildCount(); i++) {
-                    generateCode(t.getChild(i), writer);
-                }
+                // Tratar outros tipos de instruções aqui
         }
+    }
+
+    public void run(String[] args) {
+        // Implementar a lógica para executar os argumentos da main aqui
     }
 
     public static void main(String[] args) throws Exception {
