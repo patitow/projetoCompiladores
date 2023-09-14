@@ -28,11 +28,11 @@ statement: assignment // DEFAULT
 
 assignment: ID '=' expression; // Atribuição de variável OK
 
-ifStatement: 'if' booleanExpression ':' block  elseStatement?; // Estrutura condicional if
+ifStatement: 'if' booleanExpression ':' block  elseStatement?; // Estrutura condicional if OK
 
-elseStatement: 'else' block;
+elseStatement: 'else' block; // OK
 
-whileStatement: 'while' booleanExpression ':' block; // Loop while
+whileStatement: 'while' booleanExpression ':' block; // Loop while OK
 
 forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') ':' block; // Loop for
 
