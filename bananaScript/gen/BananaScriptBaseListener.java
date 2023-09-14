@@ -100,6 +100,18 @@ public class BananaScriptBaseListener implements BananaScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunType(BananaScriptParser.FunTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunType(BananaScriptParser.FunTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBlock(BananaScriptParser.BlockContext ctx) { }
 	/**
 	 * {@inheritDoc}

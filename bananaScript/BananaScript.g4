@@ -10,7 +10,7 @@ COMMENT: '//' ~[\r\n]* -> skip; // Comentários de linha
 // Regras de parser
 program: function+ EOF;     // Programa consiste em uma ou mais funções OK
 
-function: 'fun' ID '(' params ')' type block; // Definição de função OK
+function: 'fun' ID '(' params ')' funType block; // Definição de função OK
 
 params: paramOptional?; // Lista de parâmetros de função OK
 
@@ -20,7 +20,9 @@ paramRecursive: ',' param;
 
 param: type ID;                // Parâmetro da função DEFAULT
 
-type: 'int' | 'float' | 'string' | 'boolean' | 'void' | 'char' | 'double'; // Tipos de dados OK
+type: 'int' | 'float' | 'string' | 'boolean' | 'char' | 'double';
+
+funType: type | 'void' ; // Tipos de dados OK
 
 block: statement+; // Bloco de código DEFAULT
 

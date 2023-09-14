@@ -28,6 +28,18 @@ public interface BananaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParams(BananaScriptParser.ParamsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BananaScriptParser#paramOptional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParamOptional(BananaScriptParser.ParamOptionalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BananaScriptParser#paramRecursive}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParamRecursive(BananaScriptParser.ParamRecursiveContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BananaScriptParser#param}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -39,6 +51,12 @@ public interface BananaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitType(BananaScriptParser.TypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BananaScriptParser#funType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunType(BananaScriptParser.FunTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BananaScriptParser#block}.
 	 * @param ctx the parse tree
@@ -63,6 +81,12 @@ public interface BananaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIfStatement(BananaScriptParser.IfStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BananaScriptParser#elseStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseStatement(BananaScriptParser.ElseStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BananaScriptParser#whileStatement}.
 	 * @param ctx the parse tree
@@ -94,6 +118,12 @@ public interface BananaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(BananaScriptParser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BananaScriptParser#booleanExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanExpression(BananaScriptParser.BooleanExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BananaScriptParser#term}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -105,4 +135,16 @@ public interface BananaScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionCall(BananaScriptParser.FunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BananaScriptParser#functionExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionExpression(BananaScriptParser.FunctionExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BananaScriptParser#functionExpressionRecursive}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionExpressionRecursive(BananaScriptParser.FunctionExpressionRecursiveContext ctx);
 }

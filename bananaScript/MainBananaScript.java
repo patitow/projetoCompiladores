@@ -29,7 +29,7 @@ public class MainBananaScript {
             case "Program":
                 writer.write("public class GeneratedCode {\n");
                 writer.write("    public static void main(String[] args) {\n");
-                writer.write("        main()    \n");
+                writer.write("        main();    \n");
                 writer.write("    }\n\n");
                 for (int c = 0; c < t.getChildCount(); c++) {
                     generateCode(t.getChild(c), writer);
@@ -63,12 +63,15 @@ public class MainBananaScript {
                 generateCode(t.getChild(1), writer);
                 return;
             case "Param":
-                generateCode(t.getChild(0), writer);
-                writer.write(" ");
-                generateCode(t.getChild(1), writer);
+                String varType = t.getChild(0).getText();
+                writer.write(varType + " ");
+                String varName = t.getChild(1).getText();
+                writer.write(varName + " ");
             case "Type":
-                String typeVariable = t.getChild(0).getText();
-                writer.write(typeVariable);
+                return;
+            case "FunType":
+                String funTypeType = t.getChild(0).getText();
+                writer.write(funTypeType);
                 return;
             case "Block":
                 for (int c = 0; c < t.getChildCount(); c++) {

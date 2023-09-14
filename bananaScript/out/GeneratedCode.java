@@ -1,9 +1,9 @@
 public class GeneratedCode {
     public static void main(String[] args) {
-        main()    
+        main();    
     }
 
-    public int soma(int aint, int bint) {
+    public int soma(float a , double b ) {
 return a + b;
 
     }

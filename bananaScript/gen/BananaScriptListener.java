@@ -77,6 +77,16 @@ public interface BananaScriptListener extends ParseTreeListener {
 	 */
 	void exitType(BananaScriptParser.TypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BananaScriptParser#funType}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunType(BananaScriptParser.FunTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BananaScriptParser#funType}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunType(BananaScriptParser.FunTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BananaScriptParser#block}.
 	 * @param ctx the parse tree
 	 */
