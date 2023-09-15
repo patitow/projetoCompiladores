@@ -17,6 +17,14 @@ public class GeneratedCode {
                 a = a + 1;
             }
         }
+        if (a equal b or smaller ) {
+            a
+            a = a + 1;
+        } else if (b diff a ) {
+            a = a * a;
+        } else {
+            throw "testando o throw";
+        }
         while (b > 0 ) {
             b = b - 1;
         } 

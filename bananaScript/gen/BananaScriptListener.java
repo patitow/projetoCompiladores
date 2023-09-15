@@ -137,6 +137,16 @@ public interface BananaScriptListener extends ParseTreeListener {
 	 */
 	void exitElseStatement(BananaScriptParser.ElseStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BananaScriptParser#elsifStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterElsifStatement(BananaScriptParser.ElsifStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BananaScriptParser#elsifStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitElsifStatement(BananaScriptParser.ElsifStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BananaScriptParser#whileStatement}.
 	 * @param ctx the parse tree
 	 */

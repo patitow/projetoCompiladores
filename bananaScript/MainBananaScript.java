@@ -114,6 +114,24 @@ public class MainBananaScript {
                     generateCode(t.getChild(3), writer, indentLevel);
                 }
                 return;
+            case "ElsifStatement":
+                writer.write("else if (");
+                ParseTree expElseif = t.getChild(1);
+                generateCode(expElseif, writer, indentLevel);
+                writer.write(") {\n");
+                ParseTree elseifBlock = t.getChild(2);
+                generateCode(elseifBlock, writer, indentLevel+1);
+                // agora vem o else ou outro  :
+                ParseTree elseOrElsif = t.getChild(3);
+                if (elseOrElsif.getText() == "elsif"){
+                    writer.write(indent);
+                    writer.write("}\n");
+                } else {
+                    writer.write(indent);
+                    writer.write("} ");
+                    generateCode(t.getChild(3), writer, indentLevel);
+                }
+                return;
             case "ElseStatement":
                 writer.write("else {\n");
                 ParseTree expElse = t.getChild(1);

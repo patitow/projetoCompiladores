@@ -172,6 +172,18 @@ public class BananaScriptBaseListener implements BananaScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterElsifStatement(BananaScriptParser.ElsifStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElsifStatement(BananaScriptParser.ElsifStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterWhileStatement(BananaScriptParser.WhileStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}

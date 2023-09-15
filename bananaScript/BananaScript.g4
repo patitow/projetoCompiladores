@@ -32,23 +32,26 @@ statement: assignment // DEFAULT
          | forStatement
          | tryCatchStatement
          | returnStatement
+         | throwStatement
          | print;
 
 assignment: type ID '=' expression; // Atribuição de variável OK
 
-ifStatement: 'if' booleanExpression block ('.'|elseStatement?); // Estrutura condicional if OK
+ifStatement: 'if' booleanExpression block ('.'|(elseStatement | elsifStatement)?); // Estrutura condicional if OK
 
 elseStatement: 'else' block '.'; // OK
+
+elsifStatement: 'elsif' booleanExpression block ('.'| elsifStatement |elseStatement?);
 
 whileStatement: 'while' booleanExpression block '.'; // Loop while OK
 
 forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') block '.'; // Loop for
 
-tryCatchStatement: 'try' block 'catch' '(' ID ')' block '.'; // Tratamento de exceção
+tryCatchStatement: 'try' block 'catch' '(' ID ')' block '.'; // Tratamento de exceção OK
 
-returnStatement: 'return' expression '.'; // Retorno de função
+returnStatement: 'return' expression '.'; // Retorno de função OK
 
-throwStatement: 'throw' expression;
+throwStatement: 'throw' expression '.'; // OK
 
 expression: term (('*' | '+' | '-' | '/') expression)*; // Expressões aritméticas
 
@@ -65,10 +68,10 @@ booleans: '=='
         | '<=' 
         | '&&' 
         | '||' 
-        | 'equal'
-        | 'diff'
-        | 'and' |
-        | 'or';
+        | 'equal' 
+        | 'diff' 
+        | 'and' 
+        | 'or'; 
 
 term: INT
     | ID
