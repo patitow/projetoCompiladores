@@ -3,11 +3,10 @@ Seja bem-vindo ao manual do usuário do bananaScript, a sua linguagem de scripti
 
 ## As funcionalidades do bananaScript são semelhantes a de linguaguens já existentes:
 
- - Classes
  - Funções
  - Print
- - Loops for, while e forEach
- - ... (adicionar mais aqui)
+ - Estruturas condicionais
+ - Estruturas de Repetição
 
 ## O bananaScript é compilado em Java.
 A sintaxe do banana script deve ser semelhante/análoga a disponível abaixo:
@@ -25,9 +24,9 @@ fun minhaFuncao(int id, string valor) int
 #### Como os statements são formados? 
 1. ##### Declarando variáveis: 
     Para declarar uma variável em bananaScript: 
-    `{nome} = {valor}`
+    `{tipo} {nome} = {valor}`
     Por exemplo, para definir um inteiro: 
-    `var = 3`
+    `int var = 3`
     Os tipos primitivos suportados são: 
     - int 
     - float
@@ -42,17 +41,20 @@ fun minhaFuncao(int id, string valor) int
         // código
     else: 
         // código
+    :
     ```
 2. ##### Estruturas de repetição: 
     *Definindo uma estrutura for:*
     ```
     for var = 2: 
         // código
+    :
     ```
     *Definindo uma estrutura while:*
     ```
     while condicao: 
         // código
+    :
     ```
 4. ##### Bloco try/catch
     O tratamento de exceções em bananaScript é feito da seguinte forma: 
@@ -61,18 +63,5 @@ fun minhaFuncao(int id, string valor) int
         // código
     catch(exceção): 
         // tratamento
+    :
     ```
-    
-#### Algumas funções: 
-- Para printar em bananaScript: 
-     `print(valor)`
-- Para converter uma string para letras minúsculas: 
-    `lowerCase(valor)`
-- Para converter uma string para letras maísculas: 
-    `upperCase(valor)`
-- Para retornar uma substring, dada uma string: 
-    `substring(valor, inicio, fim)` 
-- Verifica se duas strings são iguais: 
-    `matches(valor_1, valor_2)` 
-- Para retornar a hora atual: 
-    `timeNow()`
