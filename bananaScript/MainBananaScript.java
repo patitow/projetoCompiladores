@@ -99,7 +99,7 @@ public class MainBananaScript {
             case "IfStatement":
                 writer.write("if (");
                 ParseTree expIF = t.getChild(1);
-                generateCode(expIF, writer, 1);
+                generateCode(expIF, writer, indentLevel);
                 writer.write(") {\n");
                 ParseTree ifBlock = t.getChild(2);
                 generateCode(ifBlock, writer, indentLevel+1);
