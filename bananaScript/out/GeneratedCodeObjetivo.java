@@ -2,7 +2,6 @@ public class GeneratedCode {
     public static void main(String[] args) {
         main();    
     }
-
     public static int soma(float a , double b ) {
         int d = 1;
         for (int c= 0; c <= 10 ; c++) {
@@ -19,19 +18,20 @@ public class GeneratedCode {
         } 
         while (b > 0 ) {
             b = b - 1;
-        }
+        } 
         try {
             a = b + c;
-        } catch(Exception e) {
+        } catch (Exception e) {
             a = b - c;
         }
+        int y = a + b;
         return a + b;
     }
-    
+
     public static void main() {
         int a = 10;
         int b = 5;
-        int c = a + b;
+        int c = soma(a, b);
+        System.out.println("printo");
     }
-  }
-
+}
