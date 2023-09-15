@@ -187,6 +187,16 @@ public interface BananaScriptListener extends ParseTreeListener {
 	 */
 	void exitExpression(BananaScriptParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BananaScriptParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperation(BananaScriptParser.OperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BananaScriptParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperation(BananaScriptParser.OperationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BananaScriptParser#booleanExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -236,4 +246,14 @@ public interface BananaScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionExpressionRecursive(BananaScriptParser.FunctionExpressionRecursiveContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link BananaScriptParser#print}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrint(BananaScriptParser.PrintContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BananaScriptParser#print}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrint(BananaScriptParser.PrintContext ctx);
 }

@@ -232,6 +232,18 @@ public class BananaScriptBaseListener implements BananaScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOperation(BananaScriptParser.OperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOperation(BananaScriptParser.OperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBooleanExpression(BananaScriptParser.BooleanExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -287,6 +299,18 @@ public class BananaScriptBaseListener implements BananaScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionExpressionRecursive(BananaScriptParser.FunctionExpressionRecursiveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrint(BananaScriptParser.PrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrint(BananaScriptParser.PrintContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

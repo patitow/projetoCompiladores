@@ -15,9 +15,11 @@ public class MainBananaScript {
     static String opName(ParseTree t) {
     if (t instanceof ParserRuleContext) {
         String name = t.getClass().getName();
+        String text = t.getText();
         name = name.substring(name.indexOf("$")+1);
         name = name.substring(0,name.indexOf("Context"));
-        System.out.println(name);
+        System.out.println(t.getText());
+        System.out.println(name + " " + text);
         return name;
     } else {
         return "Unknown"; // Trate casos desconhecidos ou não-contextuais aqui, se necessário
@@ -39,13 +41,13 @@ public class MainBananaScript {
             case "Function":
                 String functionName = t.getChild(1).getText();
                 String returnType = t.getChild(t.getChildCount() - 2).getText();
-                writer.write("    public " + returnType + " " + functionName + "(");
+                writer.write("    public static " + returnType + " " + functionName + "(");
                 ParseTree functionParams = t.getChild(3);
                 generateCode(functionParams, writer);
                 writer.write(") {\n");
                 ParseTree functionBlock = t.getChild(6);
                 generateCode(functionBlock, writer);
-                writer.write("    }\n\n");
+                writer.write("    }\n");
                 return;
             case "Params":
                 if(t.getChild(0) != null){
@@ -84,9 +86,10 @@ public class MainBananaScript {
                 generateCode(statExp, writer);
                 return;
             case "Assignment":
-                String variableName = t.getChild(0).getText();
-                ParseTree expression = t.getChild(2);
-                writer.write("        " + variableName + " = ");
+                String variableType = t.getChild(0).getText();
+                String variableName = t.getChild(1).getText();
+                ParseTree expression = t.getChild(3);
+                writer.write("        " + variableType + " " + variableName + " = ");
                 generateCode(expression, writer);
                 writer.write(";");
                 return;
@@ -95,32 +98,31 @@ public class MainBananaScript {
                 ParseTree expIF = t.getChild(1);
                 generateCode(expIF, writer);
                 writer.write(") {\n");
-                ParseTree ifBlock = t.getChild(3);
+                ParseTree ifBlock = t.getChild(2);
                 generateCode(ifBlock, writer);
-                writer.write("\n}");
-                if (t.getChildCount() == 4) {
-                    generateCode(t.getChild(4), writer);
+                // agora vem o else ou o :
+                ParseTree elseOrDoubleDots = t.getChild(3);
+                if (elseOrDoubleDots.getText() == ":"){
+                    writer.write("}\n");
+                } else {
+                    writer.write("} ");
+                    generateCode(t.getChild(3), writer);
                 }
                 return;
             case "ElseStatement":
-                writer.write("else {");
+                writer.write("else {\n");
                 ParseTree expElse = t.getChild(1);
-                writer.write("\n");
-                ParseTree elseBlock = t.getChild(3);
-                generateCode(elseBlock, writer);
-                writer.write("\n}");
-                if (t.getChildCount() == 4) {
-                    generateCode(t.getChild(4), writer);
-                }
+                generateCode(expElse, writer);
+                writer.write("} ");
                 return;
             case "WhileStatement":
                 writer.write("while (");
                 ParseTree expWhile = t.getChild(1);
                 generateCode(expWhile, writer);
                 writer.write(") {\n");
-                ParseTree whileBlock = t.getChild(3);
+                ParseTree whileBlock = t.getChild(2);
                 generateCode(whileBlock, writer);
-                writer.write("\n}");
+                writer.write("} ");
                 return;
             // Adicione mais casos conforme necessário para outros tipos de instruções
             case "ForStatement":
@@ -137,24 +139,28 @@ public class MainBananaScript {
                 ParseTree forID2 = t.getChild(7);
                 generateCode(forID2, writer);
                 writer.write(t.getChild(8) + ") {\n");
-                ParseTree forBlock = t.getChild(10);    
+                ParseTree forBlock = t.getChild(9);    
                 generateCode(forBlock, writer);
-                writer.write("\n}");
+                writer.write("}");
                 return;       
             case "TryCatchStatement":
                 writer.write("try {\n");
                 ParseTree tryBody = t.getChild(1);
+                System.out.println(t.getChild(1).getText());
                 generateCode(tryBody, writer);
-                String catchId = t.getChild(5).getText();
-                writer.write("}\n catch(Exception " + catchId + ") {\n");
-                ParseTree catchBody = t.getChild(10);
+                String catchId = t.getChild(4).getText();
+                System.out.println(t.getChild(4).getText());
+                writer.write("} catch (Exception " + catchId + ") {\n");
+                ParseTree catchBody = t.getChild(6);
+                System.out.println(t.getChild(6).getText());
                 generateCode(catchBody, writer);
-                writer.write("}\n");
+                writer.write("}");
             case "ReturnStatement":
                 ParseTree returnReturn = t.getChild(1);
+                System.out.println("retorna " + t.getChild(1).getText());
                 writer.write("return ");
                 generateCode(returnReturn, writer);
-                writer.write(";\n");
+                writer.write(";");
                 return;
             case "Term": 
                 ParseTree expTerm = t.getChild(0);
@@ -188,9 +194,20 @@ public class MainBananaScript {
                     generateCode(expExp1, writer);
                 }
                 return;
+            case "Operation": 
+                ParseTree operation = t.getChild(0);
+                generateCode(operation, writer);
+                if (t.getChildCount() > 1){
+                    String opOperator = t.getChild(1).getText();
+                    writer.write(" " + opOperator + " ");
+                    ParseTree operation1 = t.getChild(2);
+                    generateCode(operation1, writer);
+                }
+                writer.write(";");
+                return;
             case "Print":
                 writer.write("System.out.println(");
-                ParseTree printTerm = t.getChild(2);
+                ParseTree printTerm = t.getChild(1);
                 generateCode(printTerm, writer);
                 writer.write(");");
                 return;

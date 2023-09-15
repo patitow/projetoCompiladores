@@ -10,7 +10,7 @@ COMMENT: '//' ~[\r\n]* -> skip; // Comentários de linha
 // Regras de parser
 program: function+ EOF;     // Programa consiste em uma ou mais funções OK
 
-function: 'fun' ID '(' params ')' funType block; // Definição de função OK
+function: 'fun' ID '(' params ')' funType block returnStatement?; // Definição de função OK
 
 params: paramOptional?; // Lista de parâmetros de função OK
 
@@ -24,33 +24,35 @@ type: 'int' | 'float' | 'string' | 'boolean' | 'char' | 'double';
 
 funType: type | 'void' ; // Tipos de dados OK
 
-block: statement+; // Bloco de código DEFAULT
+block: (statement|operation|expression)+; // Bloco de código DEFAULT
 
 statement: assignment // DEFAULT
          | ifStatement
          | whileStatement
          | forStatement
          | tryCatchStatement
-         | returnStatement;
-        // | print;
+         | returnStatement
+         | print;
 
-assignment: ID '=' expression; // Atribuição de variável OK
+assignment: type ID '=' expression; // Atribuição de variável OK
 
-ifStatement: 'if' booleanExpression ':' block  elseStatement?; // Estrutura condicional if OK
+ifStatement: 'if' booleanExpression block (':'|elseStatement?); // Estrutura condicional if OK
 
-elseStatement: 'else' block; // OK
+elseStatement: 'else' block ':'; // OK
 
-whileStatement: 'while' booleanExpression ':' block; // Loop while OK
+whileStatement: 'while' booleanExpression block ':'; // Loop while OK
 
-forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') ':' block; // Loop for
+forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') block ':'; // Loop for
 
-tryCatchStatement: 'try' ':' block 'catch' '(' ID ')' ':' block; // Tratamento de exceção
+tryCatchStatement: 'try' block 'catch' '(' ID ')' block ':'; // Tratamento de exceção
 
-returnStatement: 'return' expression ; // Retorno de função
+returnStatement: 'return' expression ':' ; // Retorno de função
 
 expression: term (('*' | '+' | '-' | '/') expression)*; // Expressões aritméticas
 
-booleanExpression: term (('==' | '!=' | '!' | '>=' | '<=' | '&&' | '||') term)*;
+operation: ID '=' expression;
+
+booleanExpression: term (('==' | '!=' | '!' | '>' | '<' | '>=' | '<=' | '&&' | '||') term)*;
 
 term: INT
     | ID
@@ -71,4 +73,4 @@ SUB: '-';
 MOD: '%';
 POW: '^';
 
-//print: 'print' '(' term ')'; 
+print: 'print' term ':'; 
