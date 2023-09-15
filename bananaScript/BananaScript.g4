@@ -36,23 +36,39 @@ statement: assignment // DEFAULT
 
 assignment: type ID '=' expression; // Atribuição de variável OK
 
-ifStatement: 'if' booleanExpression block (':'|elseStatement?); // Estrutura condicional if OK
+ifStatement: 'if' booleanExpression block ('.'|elseStatement?); // Estrutura condicional if OK
 
-elseStatement: 'else' block ':'; // OK
+elseStatement: 'else' block '.'; // OK
 
-whileStatement: 'while' booleanExpression block ':'; // Loop while OK
+whileStatement: 'while' booleanExpression block '.'; // Loop while OK
 
-forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') block ':'; // Loop for
+forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') block '.'; // Loop for
 
-tryCatchStatement: 'try' block 'catch' '(' ID ')' block ':'; // Tratamento de exceção
+tryCatchStatement: 'try' block 'catch' '(' ID ')' block '.'; // Tratamento de exceção
 
-returnStatement: 'return' expression ':' ; // Retorno de função
+returnStatement: 'return' expression '.'; // Retorno de função
+
+throwStatement: 'throw' expression;
 
 expression: term (('*' | '+' | '-' | '/') expression)*; // Expressões aritméticas
 
 operation: ID '=' expression;
 
-booleanExpression: term (('==' | '!=' | '!' | '>' | '<' | '>=' | '<=' | '&&' | '||') term)*;
+booleanExpression: term (booleans term)*;
+
+booleans: '==' 
+        | '!=' 
+        | '!' 
+        | '>' 
+        | '<' 
+        | '>=' 
+        | '<=' 
+        | '&&' 
+        | '||' 
+        | 'equal'
+        | 'diff'
+        | 'and' |
+        | 'or';
 
 term: INT
     | ID
@@ -65,4 +81,4 @@ functionExpression: expression functionExpressionRecursive*;
 
 functionExpressionRecursive: ',' expression;
 
-print: 'print' term ':'; 
+print: 'print' term '.'; 

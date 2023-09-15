@@ -168,6 +168,12 @@ public class MainBananaScript {
                 generateCode(returnReturn, writer, indentLevel);
                 writer.write(";");
                 return;
+            case "ThrowStatement":
+                ParseTree throwReturn = t.getChild(1);
+                writer.write("throw ");
+                generateCode(throwReturn, writer, indentLevel);
+                writer.write(";");
+                return;
             case "Term": 
                 ParseTree expTerm = t.getChild(0);
                 generateCode(expTerm, writer, indentLevel);
