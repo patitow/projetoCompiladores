@@ -25,15 +25,14 @@ fun soma(float a, double b) int
   :
 
   int y = a+b
+  
 return a+b:
-
-
 
 
 fun main() void
   int a = 10
   int b = 5
   int c = soma(a,b)
-  print "printo":
+  print "Testando o print":
 
 // Comentário

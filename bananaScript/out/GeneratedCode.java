@@ -24,8 +24,7 @@ public class GeneratedCode {
             a = b + c;
         } catch (Exception e) {
             a = b - c;
-        }return         a = b + c;
-;
+        }
         int y = a + b;
         return a + b;
     }
@@ -33,7 +32,7 @@ public class GeneratedCode {
         int a = 10;
         int b = 5;
         int c = soma(a, b);
-        System.out.println("printo");
+        System.out.println("Testando o print");
     }
 }
 

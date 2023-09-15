@@ -65,12 +65,4 @@ functionExpression: expression functionExpressionRecursive*;
 
 functionExpressionRecursive: ',' expression;
 
-// Definindo prioridade de operadores
-MUL: '*';
-DIV: '/';
-ADD: '+';
-SUB: '-';
-MOD: '%';
-POW: '^';
-
 print: 'print' term ':'; 

@@ -18,7 +18,7 @@ public class MainBananaScript {
         String text = t.getText();
         name = name.substring(name.indexOf("$")+1);
         name = name.substring(0,name.indexOf("Context"));
-        System.out.println(name);
+        //System.out.println(name);
         return name;
     } else {
         return "Unknown";
@@ -103,7 +103,6 @@ public class MainBananaScript {
                 writer.write(") {\n");
                 ParseTree ifBlock = t.getChild(2);
                 generateCode(ifBlock, writer, indentLevel+1);
-                System.out.println(indentLevel);
                 // agora vem o else ou o :
                 ParseTree elseOrDoubleDots = t.getChild(3);
                 if (elseOrDoubleDots.getText() == ":"){
@@ -162,6 +161,7 @@ public class MainBananaScript {
                 generateCode(catchBody, writer, indentLevel+1);
                 writer.write(indent);
                 writer.write("}");
+                return;
             case "ReturnStatement":
                 ParseTree returnReturn = t.getChild(1);
                 writer.write("return ");

@@ -65,3 +65,6 @@ fun minhaFuncao(int id, string valor) int
         // tratamento
     :
     ```
+
+#### Para printar em bananaScript, é simples: 
+    `print "valor":`
