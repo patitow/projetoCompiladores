@@ -1,2 +1,0 @@
-datatype Pessoa(String nome, int nascimento) ;
-datatype Time(int hora, int minuto, int segundo); 
