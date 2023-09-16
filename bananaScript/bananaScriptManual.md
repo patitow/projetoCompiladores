@@ -56,7 +56,7 @@ fun minhaFuncao(int id, string valor) int
         // código
     :
     ```
-4. ##### Bloco try/catch
+4. ##### Bloco try/catch e exceções
     O tratamento de exceções em bananaScript é feito da seguinte forma: 
     ```
     try: 
@@ -64,6 +64,10 @@ fun minhaFuncao(int id, string valor) int
     catch(exceção): 
         // tratamento
     :
+    ```
+    Podemos lançar excessões usando o comando throw da seguinte forma:
+    ```
+    throw "mensagem de erro"
     ```
 
 #### Para printar em bananaScript, é simples: 
