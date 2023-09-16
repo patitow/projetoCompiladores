@@ -172,6 +172,18 @@ public class BananaScriptBaseListener implements BananaScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterElsifStatement(BananaScriptParser.ElsifStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElsifStatement(BananaScriptParser.ElsifStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterWhileStatement(BananaScriptParser.WhileStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -220,6 +232,18 @@ public class BananaScriptBaseListener implements BananaScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterThrowStatement(BananaScriptParser.ThrowStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitThrowStatement(BananaScriptParser.ThrowStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpression(BananaScriptParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -251,6 +275,18 @@ public class BananaScriptBaseListener implements BananaScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBooleanExpression(BananaScriptParser.BooleanExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBooleans(BananaScriptParser.BooleansContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBooleans(BananaScriptParser.BooleansContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

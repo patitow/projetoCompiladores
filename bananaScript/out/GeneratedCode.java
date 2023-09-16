@@ -17,6 +17,13 @@ public class GeneratedCode {
                 a = a + 1;
             }
         }
+        if (a == b || b <= a ) {
+            a = a + 1;
+        } else if (b != a ) {
+            a = a * a;
+        } else {
+            throw new IOException("testando o throw");
+        }
         while (b > 0 ) {
             b = b - 1;
         } 

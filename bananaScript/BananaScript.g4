@@ -32,27 +32,42 @@ statement: assignment // DEFAULT
          | forStatement
          | tryCatchStatement
          | returnStatement
+         | throwStatement
          | print;
 
 assignment: type ID '=' expression; // Atribuição de variável OK
 
-ifStatement: 'if' booleanExpression block (':'|elseStatement?); // Estrutura condicional if OK
+ifStatement: 'if' booleanExpression block ('.'|(elseStatement | elsifStatement)?); // Estrutura condicional if OK
 
-elseStatement: 'else' block ':'; // OK
+elseStatement: 'else' block '.'; // OK
 
-whileStatement: 'while' booleanExpression block ':'; // Loop while OK
+elsifStatement: 'elsif' booleanExpression block ('.'| elsifStatement |elseStatement?);
 
-forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') block ':'; // Loop for
+whileStatement: 'while' booleanExpression block '.'; // Loop while OK
 
-tryCatchStatement: 'try' block 'catch' '(' ID ')' block ':'; // Tratamento de exceção
+forStatement: 'for' ID '=' expression ';' booleanExpression ';' ID ('++' | '--') block '.'; // Loop for
 
-returnStatement: 'return' expression ':' ; // Retorno de função
+tryCatchStatement: 'try' block 'catch' '(' ID ')' block '.'; // Tratamento de exceção OK
+
+returnStatement: 'return' expression '.'; // Retorno de função OK
+
+throwStatement: 'throw' expression '.'; // OK
 
 expression: term (('*' | '+' | '-' | '/') expression)*; // Expressões aritméticas
 
 operation: ID '=' expression;
 
-booleanExpression: term (('==' | '!=' | '!' | '>' | '<' | '>=' | '<=' | '&&' | '||') term)*;
+booleanExpression: term (booleans term)*;
+
+booleans: '==' 
+        | '!=' 
+        | '!' 
+        | '>' 
+        | '<' 
+        | '>=' 
+        | '<=' 
+        | '&&' 
+        | '||';
 
 term: INT
     | ID
@@ -65,4 +80,4 @@ functionExpression: expression functionExpressionRecursive*;
 
 functionExpressionRecursive: ',' expression;
 
-print: 'print' term ':'; 
+print: 'print' term '.'; 

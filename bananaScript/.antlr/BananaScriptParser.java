@@ -20,24 +20,25 @@ public class BananaScriptParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
-		T__31=32, T__32=33, ID=34, INT=35, STRING=36, WS=37, COMMENT=38, MUL=39, 
-		DIV=40, ADD=41, SUB=42, MOD=43, POW=44;
+		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
+		T__38=39, ID=40, INT=41, STRING=42, WS=43, COMMENT=44;
 	public static final int
 		RULE_program = 0, RULE_function = 1, RULE_params = 2, RULE_paramOptional = 3, 
 		RULE_paramRecursive = 4, RULE_param = 5, RULE_type = 6, RULE_funType = 7, 
 		RULE_block = 8, RULE_statement = 9, RULE_assignment = 10, RULE_ifStatement = 11, 
-		RULE_elseStatement = 12, RULE_whileStatement = 13, RULE_forStatement = 14, 
-		RULE_tryCatchStatement = 15, RULE_returnStatement = 16, RULE_expression = 17, 
-		RULE_operation = 18, RULE_booleanExpression = 19, RULE_term = 20, RULE_functionCall = 21, 
-		RULE_functionExpression = 22, RULE_functionExpressionRecursive = 23, RULE_print = 24;
+		RULE_elseStatement = 12, RULE_elsifStatement = 13, RULE_whileStatement = 14, 
+		RULE_forStatement = 15, RULE_tryCatchStatement = 16, RULE_returnStatement = 17, 
+		RULE_throwStatement = 18, RULE_expression = 19, RULE_operation = 20, RULE_booleanExpression = 21, 
+		RULE_booleans = 22, RULE_term = 23, RULE_functionCall = 24, RULE_functionExpression = 25, 
+		RULE_functionExpressionRecursive = 26, RULE_print = 27;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"program", "function", "params", "paramOptional", "paramRecursive", "param", 
 			"type", "funType", "block", "statement", "assignment", "ifStatement", 
-			"elseStatement", "whileStatement", "forStatement", "tryCatchStatement", 
-			"returnStatement", "expression", "operation", "booleanExpression", "term", 
-			"functionCall", "functionExpression", "functionExpressionRecursive", 
-			"print"
+			"elseStatement", "elsifStatement", "whileStatement", "forStatement", 
+			"tryCatchStatement", "returnStatement", "throwStatement", "expression", 
+			"operation", "booleanExpression", "booleans", "term", "functionCall", 
+			"functionExpression", "functionExpressionRecursive", "print"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -45,10 +46,10 @@ public class BananaScriptParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'fun'", "'('", "')'", "','", "'int'", "'float'", "'string'", "'boolean'", 
-			"'char'", "'double'", "'void'", "'='", "'if'", "':'", "'else'", "'while'", 
-			"'for'", "';'", "'++'", "'--'", "'try'", "'catch'", "'return'", "'=='", 
-			"'!='", "'!'", "'>'", "'<'", "'>='", "'<='", "'&&'", "'||'", "'print'", 
-			null, null, null, null, null, "'*'", "'/'", "'+'", "'-'", "'%'", "'^'"
+			"'char'", "'double'", "'void'", "'='", "'if'", "'.'", "'else'", "'elsif'", 
+			"'while'", "'for'", "';'", "'++'", "'--'", "'try'", "'catch'", "'return'", 
+			"'throw'", "'*'", "'+'", "'-'", "'/'", "'=='", "'!='", "'!'", "'>'", 
+			"'<'", "'>='", "'<='", "'&&'", "'||'", "'print'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -56,8 +57,8 @@ public class BananaScriptParser extends Parser {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, "ID", "INT", 
-			"STRING", "WS", "COMMENT", "MUL", "DIV", "ADD", "SUB", "MOD", "POW"
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			null, null, null, null, "ID", "INT", "STRING", "WS", "COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -132,21 +133,21 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51); 
+			setState(57); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(50);
+				setState(56);
 				function();
 				}
 				}
-				setState(53); 
+				setState(59); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==T__0 );
-			setState(55);
+			setState(61);
 			match(EOF);
 			}
 		}
@@ -188,26 +189,26 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57);
-			match(T__0);
-			setState(58);
-			match(ID);
-			setState(59);
-			match(T__1);
-			setState(60);
-			params();
-			setState(61);
-			match(T__2);
-			setState(62);
-			funType();
 			setState(63);
-			block();
+			match(T__0);
+			setState(64);
+			match(ID);
 			setState(65);
+			match(T__1);
+			setState(66);
+			params();
+			setState(67);
+			match(T__2);
+			setState(68);
+			funType();
+			setState(69);
+			block();
+			setState(71);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__22) {
+			if (_la==T__23) {
 				{
-				setState(64);
+				setState(70);
 				returnStatement();
 				}
 			}
@@ -242,12 +243,12 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(68);
+			setState(74);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9))) != 0)) {
 				{
-				setState(67);
+				setState(73);
 				paramOptional();
 				}
 			}
@@ -288,19 +289,19 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(70);
+			setState(76);
 			param();
-			setState(74);
+			setState(80);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(71);
+				setState(77);
 				paramRecursive();
 				}
 				}
-				setState(76);
+				setState(82);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -333,9 +334,9 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(77);
+			setState(83);
 			match(T__3);
-			setState(78);
+			setState(84);
 			param();
 			}
 		}
@@ -367,9 +368,9 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80);
+			setState(86);
 			type();
-			setState(81);
+			setState(87);
 			match(ID);
 			}
 		}
@@ -398,7 +399,7 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(83);
+			setState(89);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -435,7 +436,7 @@ public class BananaScriptParser extends Parser {
 		FunTypeContext _localctx = new FunTypeContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_funType);
 		try {
-			setState(87);
+			setState(93);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__4:
@@ -446,14 +447,14 @@ public class BananaScriptParser extends Parser {
 			case T__9:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(85);
+				setState(91);
 				type();
 				}
 				break;
 			case T__10:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(86);
+				setState(92);
 				match(T__10);
 				}
 				break;
@@ -504,31 +505,31 @@ public class BananaScriptParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92); 
+			setState(98); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
 				switch (_alt) {
 				case 1:
 					{
-					setState(92);
+					setState(98);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 					case 1:
 						{
-						setState(89);
+						setState(95);
 						statement();
 						}
 						break;
 					case 2:
 						{
-						setState(90);
+						setState(96);
 						operation();
 						}
 						break;
 					case 3:
 						{
-						setState(91);
+						setState(97);
 						expression();
 						}
 						break;
@@ -538,7 +539,7 @@ public class BananaScriptParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(94); 
+				setState(100); 
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
@@ -574,6 +575,9 @@ public class BananaScriptParser extends Parser {
 		public ReturnStatementContext returnStatement() {
 			return getRuleContext(ReturnStatementContext.class,0);
 		}
+		public ThrowStatementContext throwStatement() {
+			return getRuleContext(ThrowStatementContext.class,0);
+		}
 		public PrintContext print() {
 			return getRuleContext(PrintContext.class,0);
 		}
@@ -587,7 +591,7 @@ public class BananaScriptParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_statement);
 		try {
-			setState(103);
+			setState(110);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__4:
@@ -598,49 +602,56 @@ public class BananaScriptParser extends Parser {
 			case T__9:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(96);
+				setState(102);
 				assignment();
 				}
 				break;
 			case T__12:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(97);
+				setState(103);
 				ifStatement();
 				}
 				break;
-			case T__15:
+			case T__16:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(98);
+				setState(104);
 				whileStatement();
 				}
 				break;
-			case T__16:
+			case T__17:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(99);
+				setState(105);
 				forStatement();
 				}
 				break;
-			case T__20:
+			case T__21:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(100);
+				setState(106);
 				tryCatchStatement();
 				}
 				break;
-			case T__22:
+			case T__23:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(101);
+				setState(107);
 				returnStatement();
 				}
 				break;
-			case T__32:
+			case T__24:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(102);
+				setState(108);
+				throwStatement();
+				}
+				break;
+			case T__38:
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(109);
 				print();
 				}
 				break;
@@ -679,13 +690,13 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
+			setState(112);
 			type();
-			setState(106);
+			setState(113);
 			match(ID);
-			setState(107);
+			setState(114);
 			match(T__11);
-			setState(108);
+			setState(115);
 			expression();
 			}
 		}
@@ -710,6 +721,9 @@ public class BananaScriptParser extends Parser {
 		public ElseStatementContext elseStatement() {
 			return getRuleContext(ElseStatementContext.class,0);
 		}
+		public ElsifStatementContext elsifStatement() {
+			return getRuleContext(ElsifStatementContext.class,0);
+		}
 		public IfStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -722,30 +736,36 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(110);
-			match(T__12);
-			setState(111);
-			booleanExpression();
-			setState(112);
-			block();
 			setState(117);
+			match(T__12);
+			setState(118);
+			booleanExpression();
+			setState(119);
+			block();
+			setState(125);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				{
-				setState(113);
+				setState(120);
 				match(T__13);
 				}
 				break;
 			case 2:
 				{
-				setState(115);
+				setState(123);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 				case 1:
 					{
-					setState(114);
+					setState(121);
 					elseStatement();
+					}
+					break;
+				case 2:
+					{
+					setState(122);
+					elsifStatement();
 					}
 					break;
 				}
@@ -781,12 +801,86 @@ public class BananaScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(127);
 			match(T__14);
-			setState(120);
+			setState(128);
 			block();
-			setState(121);
+			setState(129);
 			match(T__13);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ElsifStatementContext extends ParserRuleContext {
+		public BooleanExpressionContext booleanExpression() {
+			return getRuleContext(BooleanExpressionContext.class,0);
+		}
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public ElsifStatementContext elsifStatement() {
+			return getRuleContext(ElsifStatementContext.class,0);
+		}
+		public ElseStatementContext elseStatement() {
+			return getRuleContext(ElseStatementContext.class,0);
+		}
+		public ElsifStatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_elsifStatement; }
+	}
+
+	public final ElsifStatementContext elsifStatement() throws RecognitionException {
+		ElsifStatementContext _localctx = new ElsifStatementContext(_ctx, getState());
+		enterRule(_localctx, 26, RULE_elsifStatement);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(131);
+			match(T__15);
+			setState(132);
+			booleanExpression();
+			setState(133);
+			block();
+			setState(139);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
+			case 1:
+				{
+				setState(134);
+				match(T__13);
+				}
+				break;
+			case 2:
+				{
+				setState(135);
+				elsifStatement();
+				}
+				break;
+			case 3:
+				{
+				setState(137);
+				_errHandler.sync(this);
+				switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+				case 1:
+					{
+					setState(136);
+					elseStatement();
+					}
+					break;
+				}
+				}
+				break;
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -815,17 +909,17 @@ public class BananaScriptParser extends Parser {
 
 	public final WhileStatementContext whileStatement() throws RecognitionException {
 		WhileStatementContext _localctx = new WhileStatementContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_whileStatement);
+		enterRule(_localctx, 28, RULE_whileStatement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123);
-			match(T__15);
-			setState(124);
+			setState(141);
+			match(T__16);
+			setState(142);
 			booleanExpression();
-			setState(125);
+			setState(143);
 			block();
-			setState(126);
+			setState(144);
 			match(T__13);
 			}
 		}
@@ -862,30 +956,30 @@ public class BananaScriptParser extends Parser {
 
 	public final ForStatementContext forStatement() throws RecognitionException {
 		ForStatementContext _localctx = new ForStatementContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_forStatement);
+		enterRule(_localctx, 30, RULE_forStatement);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(128);
-			match(T__16);
-			setState(129);
+			setState(146);
+			match(T__17);
+			setState(147);
 			match(ID);
-			setState(130);
+			setState(148);
 			match(T__11);
-			setState(131);
+			setState(149);
 			expression();
-			setState(132);
-			match(T__17);
-			setState(133);
+			setState(150);
+			match(T__18);
+			setState(151);
 			booleanExpression();
-			setState(134);
-			match(T__17);
-			setState(135);
+			setState(152);
+			match(T__18);
+			setState(153);
 			match(ID);
-			setState(136);
+			setState(154);
 			_la = _input.LA(1);
-			if ( !(_la==T__18 || _la==T__19) ) {
+			if ( !(_la==T__19 || _la==T__20) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -893,9 +987,9 @@ public class BananaScriptParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(137);
+			setState(155);
 			block();
-			setState(138);
+			setState(156);
 			match(T__13);
 			}
 		}
@@ -926,25 +1020,25 @@ public class BananaScriptParser extends Parser {
 
 	public final TryCatchStatementContext tryCatchStatement() throws RecognitionException {
 		TryCatchStatementContext _localctx = new TryCatchStatementContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_tryCatchStatement);
+		enterRule(_localctx, 32, RULE_tryCatchStatement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(140);
-			match(T__20);
-			setState(141);
-			block();
-			setState(142);
+			setState(158);
 			match(T__21);
-			setState(143);
-			match(T__1);
-			setState(144);
-			match(ID);
-			setState(145);
-			match(T__2);
-			setState(146);
+			setState(159);
 			block();
-			setState(147);
+			setState(160);
+			match(T__22);
+			setState(161);
+			match(T__1);
+			setState(162);
+			match(ID);
+			setState(163);
+			match(T__2);
+			setState(164);
+			block();
+			setState(165);
 			match(T__13);
 			}
 		}
@@ -971,15 +1065,50 @@ public class BananaScriptParser extends Parser {
 
 	public final ReturnStatementContext returnStatement() throws RecognitionException {
 		ReturnStatementContext _localctx = new ReturnStatementContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_returnStatement);
+		enterRule(_localctx, 34, RULE_returnStatement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(149);
-			match(T__22);
-			setState(150);
+			setState(167);
+			match(T__23);
+			setState(168);
 			expression();
-			setState(151);
+			setState(169);
+			match(T__13);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ThrowStatementContext extends ParserRuleContext {
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public ThrowStatementContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_throwStatement; }
+	}
+
+	public final ThrowStatementContext throwStatement() throws RecognitionException {
+		ThrowStatementContext _localctx = new ThrowStatementContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_throwStatement);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(171);
+			match(T__24);
+			setState(172);
+			expression();
+			setState(173);
 			match(T__13);
 			}
 		}
@@ -1004,22 +1133,6 @@ public class BananaScriptParser extends Parser {
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public List<TerminalNode> MUL() { return getTokens(BananaScriptParser.MUL); }
-		public TerminalNode MUL(int i) {
-			return getToken(BananaScriptParser.MUL, i);
-		}
-		public List<TerminalNode> ADD() { return getTokens(BananaScriptParser.ADD); }
-		public TerminalNode ADD(int i) {
-			return getToken(BananaScriptParser.ADD, i);
-		}
-		public List<TerminalNode> SUB() { return getTokens(BananaScriptParser.SUB); }
-		public TerminalNode SUB(int i) {
-			return getToken(BananaScriptParser.SUB, i);
-		}
-		public List<TerminalNode> DIV() { return getTokens(BananaScriptParser.DIV); }
-		public TerminalNode DIV(int i) {
-			return getToken(BananaScriptParser.DIV, i);
-		}
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1028,24 +1141,24 @@ public class BananaScriptParser extends Parser {
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_expression);
+		enterRule(_localctx, 38, RULE_expression);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(153);
+			setState(175);
 			term();
-			setState(158);
+			setState(180);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(154);
+					setState(176);
 					_la = _input.LA(1);
-					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MUL) | (1L << DIV) | (1L << ADD) | (1L << SUB))) != 0)) ) {
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28))) != 0)) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -1053,14 +1166,14 @@ public class BananaScriptParser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(155);
+					setState(177);
 					expression();
 					}
 					} 
 				}
-				setState(160);
+				setState(182);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
 			}
 			}
 		}
@@ -1088,15 +1201,15 @@ public class BananaScriptParser extends Parser {
 
 	public final OperationContext operation() throws RecognitionException {
 		OperationContext _localctx = new OperationContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_operation);
+		enterRule(_localctx, 40, RULE_operation);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(161);
+			setState(183);
 			match(ID);
-			setState(162);
+			setState(184);
 			match(T__11);
-			setState(163);
+			setState(185);
 			expression();
 			}
 		}
@@ -1118,6 +1231,12 @@ public class BananaScriptParser extends Parser {
 		public TermContext term(int i) {
 			return getRuleContext(TermContext.class,i);
 		}
+		public List<BooleansContext> booleans() {
+			return getRuleContexts(BooleansContext.class);
+		}
+		public BooleansContext booleans(int i) {
+			return getRuleContext(BooleansContext.class,i);
+		}
 		public BooleanExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1126,36 +1245,65 @@ public class BananaScriptParser extends Parser {
 
 	public final BooleanExpressionContext booleanExpression() throws RecognitionException {
 		BooleanExpressionContext _localctx = new BooleanExpressionContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_booleanExpression);
+		enterRule(_localctx, 42, RULE_booleanExpression);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(165);
+			setState(187);
 			term();
-			setState(170);
+			setState(193);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << T__35) | (1L << T__36) | (1L << T__37))) != 0)) {
 				{
 				{
-				setState(166);
-				_la = _input.LA(1);
-				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31))) != 0)) ) {
-				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
-				setState(167);
+				setState(188);
+				booleans();
+				setState(189);
 				term();
 				}
 				}
-				setState(172);
+				setState(195);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class BooleansContext extends ParserRuleContext {
+		public BooleansContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_booleans; }
+	}
+
+	public final BooleansContext booleans() throws RecognitionException {
+		BooleansContext _localctx = new BooleansContext(_ctx, getState());
+		enterRule(_localctx, 44, RULE_booleans);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(196);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << T__35) | (1L << T__36) | (1L << T__37))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
 			}
 			}
 		}
@@ -1185,36 +1333,36 @@ public class BananaScriptParser extends Parser {
 
 	public final TermContext term() throws RecognitionException {
 		TermContext _localctx = new TermContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_term);
+		enterRule(_localctx, 46, RULE_term);
 		try {
-			setState(177);
+			setState(202);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(173);
+				setState(198);
 				match(INT);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(174);
+				setState(199);
 				match(ID);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(175);
+				setState(200);
 				match(STRING);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(176);
+				setState(201);
 				functionCall();
 				}
 				break;
@@ -1244,26 +1392,26 @@ public class BananaScriptParser extends Parser {
 
 	public final FunctionCallContext functionCall() throws RecognitionException {
 		FunctionCallContext _localctx = new FunctionCallContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_functionCall);
+		enterRule(_localctx, 48, RULE_functionCall);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(179);
+			setState(204);
 			match(ID);
-			setState(180);
+			setState(205);
 			match(T__1);
-			setState(182);
+			setState(207);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID) | (1L << INT) | (1L << STRING))) != 0)) {
 				{
-				setState(181);
+				setState(206);
 				functionExpression();
 				}
 			}
 
-			setState(184);
+			setState(209);
 			match(T__2);
 			}
 		}
@@ -1296,24 +1444,24 @@ public class BananaScriptParser extends Parser {
 
 	public final FunctionExpressionContext functionExpression() throws RecognitionException {
 		FunctionExpressionContext _localctx = new FunctionExpressionContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_functionExpression);
+		enterRule(_localctx, 50, RULE_functionExpression);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(186);
+			setState(211);
 			expression();
-			setState(190);
+			setState(215);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(187);
+				setState(212);
 				functionExpressionRecursive();
 				}
 				}
-				setState(192);
+				setState(217);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1342,13 +1490,13 @@ public class BananaScriptParser extends Parser {
 
 	public final FunctionExpressionRecursiveContext functionExpressionRecursive() throws RecognitionException {
 		FunctionExpressionRecursiveContext _localctx = new FunctionExpressionRecursiveContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_functionExpressionRecursive);
+		enterRule(_localctx, 52, RULE_functionExpressionRecursive);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(193);
+			setState(218);
 			match(T__3);
-			setState(194);
+			setState(219);
 			expression();
 			}
 		}
@@ -1375,15 +1523,15 @@ public class BananaScriptParser extends Parser {
 
 	public final PrintContext print() throws RecognitionException {
 		PrintContext _localctx = new PrintContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_print);
+		enterRule(_localctx, 54, RULE_print);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(196);
-			match(T__32);
-			setState(197);
+			setState(221);
+			match(T__38);
+			setState(222);
 			term();
-			setState(198);
+			setState(223);
 			match(T__13);
 			}
 		}
@@ -1399,65 +1547,75 @@ public class BananaScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3.\u00cb\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3.\u00e4\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
-		"\4\32\t\32\3\2\6\2\66\n\2\r\2\16\2\67\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\3\3\5\3D\n\3\3\4\5\4G\n\4\3\5\3\5\7\5K\n\5\f\5\16\5N\13\5\3\6\3\6"+
-		"\3\6\3\7\3\7\3\7\3\b\3\b\3\t\3\t\5\tZ\n\t\3\n\3\n\3\n\6\n_\n\n\r\n\16"+
-		"\n`\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13j\n\13\3\f\3\f\3\f\3\f\3\f"+
-		"\3\r\3\r\3\r\3\r\3\r\5\rv\n\r\5\rx\n\r\3\16\3\16\3\16\3\16\3\17\3\17\3"+
-		"\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3"+
-		"\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3"+
-		"\23\3\23\3\23\7\23\u009f\n\23\f\23\16\23\u00a2\13\23\3\24\3\24\3\24\3"+
-		"\24\3\25\3\25\3\25\7\25\u00ab\n\25\f\25\16\25\u00ae\13\25\3\26\3\26\3"+
-		"\26\3\26\5\26\u00b4\n\26\3\27\3\27\3\27\5\27\u00b9\n\27\3\27\3\27\3\30"+
-		"\3\30\7\30\u00bf\n\30\f\30\16\30\u00c2\13\30\3\31\3\31\3\31\3\32\3\32"+
-		"\3\32\3\32\3\32\2\2\33\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,"+
-		".\60\62\2\6\3\2\7\f\3\2\25\26\3\2),\3\2\32\"\2\u00c8\2\65\3\2\2\2\4;\3"+
-		"\2\2\2\6F\3\2\2\2\bH\3\2\2\2\nO\3\2\2\2\fR\3\2\2\2\16U\3\2\2\2\20Y\3\2"+
-		"\2\2\22^\3\2\2\2\24i\3\2\2\2\26k\3\2\2\2\30p\3\2\2\2\32y\3\2\2\2\34}\3"+
-		"\2\2\2\36\u0082\3\2\2\2 \u008e\3\2\2\2\"\u0097\3\2\2\2$\u009b\3\2\2\2"+
-		"&\u00a3\3\2\2\2(\u00a7\3\2\2\2*\u00b3\3\2\2\2,\u00b5\3\2\2\2.\u00bc\3"+
-		"\2\2\2\60\u00c3\3\2\2\2\62\u00c6\3\2\2\2\64\66\5\4\3\2\65\64\3\2\2\2\66"+
-		"\67\3\2\2\2\67\65\3\2\2\2\678\3\2\2\289\3\2\2\29:\7\2\2\3:\3\3\2\2\2;"+
-		"<\7\3\2\2<=\7$\2\2=>\7\4\2\2>?\5\6\4\2?@\7\5\2\2@A\5\20\t\2AC\5\22\n\2"+
-		"BD\5\"\22\2CB\3\2\2\2CD\3\2\2\2D\5\3\2\2\2EG\5\b\5\2FE\3\2\2\2FG\3\2\2"+
-		"\2G\7\3\2\2\2HL\5\f\7\2IK\5\n\6\2JI\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2"+
-		"\2\2M\t\3\2\2\2NL\3\2\2\2OP\7\6\2\2PQ\5\f\7\2Q\13\3\2\2\2RS\5\16\b\2S"+
-		"T\7$\2\2T\r\3\2\2\2UV\t\2\2\2V\17\3\2\2\2WZ\5\16\b\2XZ\7\r\2\2YW\3\2\2"+
-		"\2YX\3\2\2\2Z\21\3\2\2\2[_\5\24\13\2\\_\5&\24\2]_\5$\23\2^[\3\2\2\2^\\"+
-		"\3\2\2\2^]\3\2\2\2_`\3\2\2\2`^\3\2\2\2`a\3\2\2\2a\23\3\2\2\2bj\5\26\f"+
-		"\2cj\5\30\r\2dj\5\34\17\2ej\5\36\20\2fj\5 \21\2gj\5\"\22\2hj\5\62\32\2"+
-		"ib\3\2\2\2ic\3\2\2\2id\3\2\2\2ie\3\2\2\2if\3\2\2\2ig\3\2\2\2ih\3\2\2\2"+
-		"j\25\3\2\2\2kl\5\16\b\2lm\7$\2\2mn\7\16\2\2no\5$\23\2o\27\3\2\2\2pq\7"+
-		"\17\2\2qr\5(\25\2rw\5\22\n\2sx\7\20\2\2tv\5\32\16\2ut\3\2\2\2uv\3\2\2"+
-		"\2vx\3\2\2\2ws\3\2\2\2wu\3\2\2\2x\31\3\2\2\2yz\7\21\2\2z{\5\22\n\2{|\7"+
-		"\20\2\2|\33\3\2\2\2}~\7\22\2\2~\177\5(\25\2\177\u0080\5\22\n\2\u0080\u0081"+
-		"\7\20\2\2\u0081\35\3\2\2\2\u0082\u0083\7\23\2\2\u0083\u0084\7$\2\2\u0084"+
-		"\u0085\7\16\2\2\u0085\u0086\5$\23\2\u0086\u0087\7\24\2\2\u0087\u0088\5"+
-		"(\25\2\u0088\u0089\7\24\2\2\u0089\u008a\7$\2\2\u008a\u008b\t\3\2\2\u008b"+
-		"\u008c\5\22\n\2\u008c\u008d\7\20\2\2\u008d\37\3\2\2\2\u008e\u008f\7\27"+
-		"\2\2\u008f\u0090\5\22\n\2\u0090\u0091\7\30\2\2\u0091\u0092\7\4\2\2\u0092"+
-		"\u0093\7$\2\2\u0093\u0094\7\5\2\2\u0094\u0095\5\22\n\2\u0095\u0096\7\20"+
-		"\2\2\u0096!\3\2\2\2\u0097\u0098\7\31\2\2\u0098\u0099\5$\23\2\u0099\u009a"+
-		"\7\20\2\2\u009a#\3\2\2\2\u009b\u00a0\5*\26\2\u009c\u009d\t\4\2\2\u009d"+
-		"\u009f\5$\23\2\u009e\u009c\3\2\2\2\u009f\u00a2\3\2\2\2\u00a0\u009e\3\2"+
-		"\2\2\u00a0\u00a1\3\2\2\2\u00a1%\3\2\2\2\u00a2\u00a0\3\2\2\2\u00a3\u00a4"+
-		"\7$\2\2\u00a4\u00a5\7\16\2\2\u00a5\u00a6\5$\23\2\u00a6\'\3\2\2\2\u00a7"+
-		"\u00ac\5*\26\2\u00a8\u00a9\t\5\2\2\u00a9\u00ab\5*\26\2\u00aa\u00a8\3\2"+
-		"\2\2\u00ab\u00ae\3\2\2\2\u00ac\u00aa\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad"+
-		")\3\2\2\2\u00ae\u00ac\3\2\2\2\u00af\u00b4\7%\2\2\u00b0\u00b4\7$\2\2\u00b1"+
-		"\u00b4\7&\2\2\u00b2\u00b4\5,\27\2\u00b3\u00af\3\2\2\2\u00b3\u00b0\3\2"+
-		"\2\2\u00b3\u00b1\3\2\2\2\u00b3\u00b2\3\2\2\2\u00b4+\3\2\2\2\u00b5\u00b6"+
-		"\7$\2\2\u00b6\u00b8\7\4\2\2\u00b7\u00b9\5.\30\2\u00b8\u00b7\3\2\2\2\u00b8"+
-		"\u00b9\3\2\2\2\u00b9\u00ba\3\2\2\2\u00ba\u00bb\7\5\2\2\u00bb-\3\2\2\2"+
-		"\u00bc\u00c0\5$\23\2\u00bd\u00bf\5\60\31\2\u00be\u00bd\3\2\2\2\u00bf\u00c2"+
-		"\3\2\2\2\u00c0\u00be\3\2\2\2\u00c0\u00c1\3\2\2\2\u00c1/\3\2\2\2\u00c2"+
-		"\u00c0\3\2\2\2\u00c3\u00c4\7\6\2\2\u00c4\u00c5\5$\23\2\u00c5\61\3\2\2"+
-		"\2\u00c6\u00c7\7#\2\2\u00c7\u00c8\5*\26\2\u00c8\u00c9\7\20\2\2\u00c9\63"+
-		"\3\2\2\2\21\67CFLY^`iuw\u00a0\u00ac\u00b3\u00b8\u00c0";
+		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\3\2\6\2<\n\2\r\2\16\2=\3\2\3"+
+		"\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3J\n\3\3\4\5\4M\n\4\3\5\3\5\7\5Q"+
+		"\n\5\f\5\16\5T\13\5\3\6\3\6\3\6\3\7\3\7\3\7\3\b\3\b\3\t\3\t\5\t`\n\t\3"+
+		"\n\3\n\3\n\6\ne\n\n\r\n\16\nf\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
+		"\5\13q\n\13\3\f\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\5\r~\n\r\5\r\u0080"+
+		"\n\r\3\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u008c\n\17"+
+		"\5\17\u008e\n\17\3\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21\3\21\3\21"+
+		"\3\21\3\21\3\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22"+
+		"\3\22\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\25\3\25\3\25\7\25\u00b5"+
+		"\n\25\f\25\16\25\u00b8\13\25\3\26\3\26\3\26\3\26\3\27\3\27\3\27\3\27\7"+
+		"\27\u00c2\n\27\f\27\16\27\u00c5\13\27\3\30\3\30\3\31\3\31\3\31\3\31\5"+
+		"\31\u00cd\n\31\3\32\3\32\3\32\5\32\u00d2\n\32\3\32\3\32\3\33\3\33\7\33"+
+		"\u00d8\n\33\f\33\16\33\u00db\13\33\3\34\3\34\3\34\3\35\3\35\3\35\3\35"+
+		"\3\35\2\2\36\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64"+
+		"\668\2\6\3\2\7\f\3\2\26\27\3\2\34\37\3\2 (\2\u00e3\2;\3\2\2\2\4A\3\2\2"+
+		"\2\6L\3\2\2\2\bN\3\2\2\2\nU\3\2\2\2\fX\3\2\2\2\16[\3\2\2\2\20_\3\2\2\2"+
+		"\22d\3\2\2\2\24p\3\2\2\2\26r\3\2\2\2\30w\3\2\2\2\32\u0081\3\2\2\2\34\u0085"+
+		"\3\2\2\2\36\u008f\3\2\2\2 \u0094\3\2\2\2\"\u00a0\3\2\2\2$\u00a9\3\2\2"+
+		"\2&\u00ad\3\2\2\2(\u00b1\3\2\2\2*\u00b9\3\2\2\2,\u00bd\3\2\2\2.\u00c6"+
+		"\3\2\2\2\60\u00cc\3\2\2\2\62\u00ce\3\2\2\2\64\u00d5\3\2\2\2\66\u00dc\3"+
+		"\2\2\28\u00df\3\2\2\2:<\5\4\3\2;:\3\2\2\2<=\3\2\2\2=;\3\2\2\2=>\3\2\2"+
+		"\2>?\3\2\2\2?@\7\2\2\3@\3\3\2\2\2AB\7\3\2\2BC\7*\2\2CD\7\4\2\2DE\5\6\4"+
+		"\2EF\7\5\2\2FG\5\20\t\2GI\5\22\n\2HJ\5$\23\2IH\3\2\2\2IJ\3\2\2\2J\5\3"+
+		"\2\2\2KM\5\b\5\2LK\3\2\2\2LM\3\2\2\2M\7\3\2\2\2NR\5\f\7\2OQ\5\n\6\2PO"+
+		"\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2S\t\3\2\2\2TR\3\2\2\2UV\7\6\2\2"+
+		"VW\5\f\7\2W\13\3\2\2\2XY\5\16\b\2YZ\7*\2\2Z\r\3\2\2\2[\\\t\2\2\2\\\17"+
+		"\3\2\2\2]`\5\16\b\2^`\7\r\2\2_]\3\2\2\2_^\3\2\2\2`\21\3\2\2\2ae\5\24\13"+
+		"\2be\5*\26\2ce\5(\25\2da\3\2\2\2db\3\2\2\2dc\3\2\2\2ef\3\2\2\2fd\3\2\2"+
+		"\2fg\3\2\2\2g\23\3\2\2\2hq\5\26\f\2iq\5\30\r\2jq\5\36\20\2kq\5 \21\2l"+
+		"q\5\"\22\2mq\5$\23\2nq\5&\24\2oq\58\35\2ph\3\2\2\2pi\3\2\2\2pj\3\2\2\2"+
+		"pk\3\2\2\2pl\3\2\2\2pm\3\2\2\2pn\3\2\2\2po\3\2\2\2q\25\3\2\2\2rs\5\16"+
+		"\b\2st\7*\2\2tu\7\16\2\2uv\5(\25\2v\27\3\2\2\2wx\7\17\2\2xy\5,\27\2y\177"+
+		"\5\22\n\2z\u0080\7\20\2\2{~\5\32\16\2|~\5\34\17\2}{\3\2\2\2}|\3\2\2\2"+
+		"}~\3\2\2\2~\u0080\3\2\2\2\177z\3\2\2\2\177}\3\2\2\2\u0080\31\3\2\2\2\u0081"+
+		"\u0082\7\21\2\2\u0082\u0083\5\22\n\2\u0083\u0084\7\20\2\2\u0084\33\3\2"+
+		"\2\2\u0085\u0086\7\22\2\2\u0086\u0087\5,\27\2\u0087\u008d\5\22\n\2\u0088"+
+		"\u008e\7\20\2\2\u0089\u008e\5\34\17\2\u008a\u008c\5\32\16\2\u008b\u008a"+
+		"\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008e\3\2\2\2\u008d\u0088\3\2\2\2\u008d"+
+		"\u0089\3\2\2\2\u008d\u008b\3\2\2\2\u008e\35\3\2\2\2\u008f\u0090\7\23\2"+
+		"\2\u0090\u0091\5,\27\2\u0091\u0092\5\22\n\2\u0092\u0093\7\20\2\2\u0093"+
+		"\37\3\2\2\2\u0094\u0095\7\24\2\2\u0095\u0096\7*\2\2\u0096\u0097\7\16\2"+
+		"\2\u0097\u0098\5(\25\2\u0098\u0099\7\25\2\2\u0099\u009a\5,\27\2\u009a"+
+		"\u009b\7\25\2\2\u009b\u009c\7*\2\2\u009c\u009d\t\3\2\2\u009d\u009e\5\22"+
+		"\n\2\u009e\u009f\7\20\2\2\u009f!\3\2\2\2\u00a0\u00a1\7\30\2\2\u00a1\u00a2"+
+		"\5\22\n\2\u00a2\u00a3\7\31\2\2\u00a3\u00a4\7\4\2\2\u00a4\u00a5\7*\2\2"+
+		"\u00a5\u00a6\7\5\2\2\u00a6\u00a7\5\22\n\2\u00a7\u00a8\7\20\2\2\u00a8#"+
+		"\3\2\2\2\u00a9\u00aa\7\32\2\2\u00aa\u00ab\5(\25\2\u00ab\u00ac\7\20\2\2"+
+		"\u00ac%\3\2\2\2\u00ad\u00ae\7\33\2\2\u00ae\u00af\5(\25\2\u00af\u00b0\7"+
+		"\20\2\2\u00b0\'\3\2\2\2\u00b1\u00b6\5\60\31\2\u00b2\u00b3\t\4\2\2\u00b3"+
+		"\u00b5\5(\25\2\u00b4\u00b2\3\2\2\2\u00b5\u00b8\3\2\2\2\u00b6\u00b4\3\2"+
+		"\2\2\u00b6\u00b7\3\2\2\2\u00b7)\3\2\2\2\u00b8\u00b6\3\2\2\2\u00b9\u00ba"+
+		"\7*\2\2\u00ba\u00bb\7\16\2\2\u00bb\u00bc\5(\25\2\u00bc+\3\2\2\2\u00bd"+
+		"\u00c3\5\60\31\2\u00be\u00bf\5.\30\2\u00bf\u00c0\5\60\31\2\u00c0\u00c2"+
+		"\3\2\2\2\u00c1\u00be\3\2\2\2\u00c2\u00c5\3\2\2\2\u00c3\u00c1\3\2\2\2\u00c3"+
+		"\u00c4\3\2\2\2\u00c4-\3\2\2\2\u00c5\u00c3\3\2\2\2\u00c6\u00c7\t\5\2\2"+
+		"\u00c7/\3\2\2\2\u00c8\u00cd\7+\2\2\u00c9\u00cd\7*\2\2\u00ca\u00cd\7,\2"+
+		"\2\u00cb\u00cd\5\62\32\2\u00cc\u00c8\3\2\2\2\u00cc\u00c9\3\2\2\2\u00cc"+
+		"\u00ca\3\2\2\2\u00cc\u00cb\3\2\2\2\u00cd\61\3\2\2\2\u00ce\u00cf\7*\2\2"+
+		"\u00cf\u00d1\7\4\2\2\u00d0\u00d2\5\64\33\2\u00d1\u00d0\3\2\2\2\u00d1\u00d2"+
+		"\3\2\2\2\u00d2\u00d3\3\2\2\2\u00d3\u00d4\7\5\2\2\u00d4\63\3\2\2\2\u00d5"+
+		"\u00d9\5(\25\2\u00d6\u00d8\5\66\34\2\u00d7\u00d6\3\2\2\2\u00d8\u00db\3"+
+		"\2\2\2\u00d9\u00d7\3\2\2\2\u00d9\u00da\3\2\2\2\u00da\65\3\2\2\2\u00db"+
+		"\u00d9\3\2\2\2\u00dc\u00dd\7\6\2\2\u00dd\u00de\5(\25\2\u00de\67\3\2\2"+
+		"\2\u00df\u00e0\7)\2\2\u00e0\u00e1\5\60\31\2\u00e1\u00e2\7\20\2\2\u00e2"+
+		"9\3\2\2\2\23=ILR_dfp}\177\u008b\u008d\u00b6\u00c3\u00cc\u00d1\u00d9";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

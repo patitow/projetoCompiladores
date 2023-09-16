@@ -137,6 +137,16 @@ public interface BananaScriptListener extends ParseTreeListener {
 	 */
 	void exitElseStatement(BananaScriptParser.ElseStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BananaScriptParser#elsifStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterElsifStatement(BananaScriptParser.ElsifStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BananaScriptParser#elsifStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitElsifStatement(BananaScriptParser.ElsifStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BananaScriptParser#whileStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -177,6 +187,16 @@ public interface BananaScriptListener extends ParseTreeListener {
 	 */
 	void exitReturnStatement(BananaScriptParser.ReturnStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BananaScriptParser#throwStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterThrowStatement(BananaScriptParser.ThrowStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BananaScriptParser#throwStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitThrowStatement(BananaScriptParser.ThrowStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BananaScriptParser#expression}.
 	 * @param ctx the parse tree
 	 */
@@ -206,6 +226,16 @@ public interface BananaScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBooleanExpression(BananaScriptParser.BooleanExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link BananaScriptParser#booleans}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleans(BananaScriptParser.BooleansContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BananaScriptParser#booleans}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleans(BananaScriptParser.BooleansContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BananaScriptParser#term}.
 	 * @param ctx the parse tree

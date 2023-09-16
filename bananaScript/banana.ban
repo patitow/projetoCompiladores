@@ -2,7 +2,7 @@ fun soma(float a, double b) int
   int d = 1
   for c = 0; c<=10 ; c++
     a = c + b
-  :
+  .
 
   if a != b
     a = a+1
@@ -11,28 +11,36 @@ fun soma(float a, double b) int
       a = a-1
     else
       a=a+1
-    :
-  :
+    .
+  .
+
+  if a == b || b <= a
+    a = a+1
+  elsif b != a
+    a = a*a
+  else
+    throw "testando o throw".
+  .
 
   while b>0
     b=b-1
-  :
+  .
 
   try
     a=b+c
   catch (e)
     a=b-c
-  :
+  .
 
   int y = a+b
   
-return a+b:
+return a+b .
 
 
 fun main() void
   int a = 10
   int b = 5
   int c = soma(a,b)
-  print "Testando o print":
+  print "Testando o print" .
 
 // Comentário
