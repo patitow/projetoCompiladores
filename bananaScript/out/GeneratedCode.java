@@ -22,7 +22,7 @@ public class GeneratedCode {
         } else if (b != a ) {
             a = a * a;
         } else {
-            throw "testando o throw";
+            throw new "testando o throw";
         }
         while (b > 0 ) {
             b = b - 1;
