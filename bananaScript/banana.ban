@@ -14,9 +14,9 @@ fun soma(float a, double b) int
     .
   .
 
-  if a equal b or smaller a
+  if a == b || b <= a
     a = a+1
-  elsif b diff a
+  elsif b != a
     a = a*a
   else
     throw "testando o throw".

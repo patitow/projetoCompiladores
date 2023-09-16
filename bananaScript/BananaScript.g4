@@ -67,11 +67,7 @@ booleans: '=='
         | '>=' 
         | '<=' 
         | '&&' 
-        | '||' 
-        | 'equal' 
-        | 'diff' 
-        | 'and' 
-        | 'or'; 
+        | '||';
 
 term: INT
     | ID
