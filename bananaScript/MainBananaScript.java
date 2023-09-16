@@ -188,9 +188,9 @@ public class MainBananaScript {
                 return;
             case "ThrowStatement":
                 ParseTree throwReturn = t.getChild(1);
-                writer.write("throw new ");
+                writer.write("throw new IOException(");
                 generateCode(throwReturn, writer, indentLevel);
-                writer.write(";");
+                writer.write(");");
                 return;
             case "Term": 
                 ParseTree expTerm = t.getChild(0);
